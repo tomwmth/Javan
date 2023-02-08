@@ -1,0 +1,58 @@
+package com.hawolt.dto.match.v5.match;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Created: 07/02/2023 12:42
+ * Author: Twitter @hawolt
+ **/
+
+public class TeamDto {
+    private final List<BanDto> bans;
+    private final ObjectivesDto objectives;
+    private final int teamId;
+    private final boolean win;
+
+    public TeamDto(JSONObject team) {
+        this.win = team.getBoolean("win");
+        this.teamId = team.getInt("teamId");
+        this.objectives = new ObjectivesDto(team.getJSONObject("objectives"));
+        this.bans = team.getJSONArray("bans")
+                .toList()
+                .stream()
+                .map(o -> (HashMap<?, ?>) o)
+                .map(JSONObject::new)
+                .map(BanDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public List<BanDto> getBans() {
+        return bans;
+    }
+
+    public ObjectivesDto getObjectives() {
+        return objectives;
+    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamDto{" +
+                "bans=" + bans +
+                ", objectives=" + objectives +
+                ", teamId=" + teamId +
+                ", win=" + win +
+                '}';
+    }
+}

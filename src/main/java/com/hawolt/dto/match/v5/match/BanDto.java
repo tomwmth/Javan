@@ -1,0 +1,33 @@
+package com.hawolt.dto.match.v5.match;
+
+import org.json.JSONObject;
+
+/**
+ * Created: 07/02/2023 14:48
+ * Author: Twitter @hawolt
+ **/
+
+public class BanDto {
+    private final int championId, pickTurn;
+
+    public BanDto(JSONObject ban) {
+        this.championId = ban.getInt("championId");
+        this.pickTurn = ban.getInt("pickTurn");
+    }
+
+    public int getChampionId() {
+        return championId;
+    }
+
+    public int getPickTurn() {
+        return pickTurn;
+    }
+
+    @Override
+    public String toString() {
+        return "BanDto{" +
+                "championId=" + championId +
+                ", pickTurn=" + pickTurn +
+                '}';
+    }
+}

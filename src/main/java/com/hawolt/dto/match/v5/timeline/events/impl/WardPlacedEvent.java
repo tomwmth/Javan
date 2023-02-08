@@ -1,0 +1,50 @@
+package com.hawolt.dto.match.v5.timeline.events.impl;
+
+import com.hawolt.dto.match.v5.timeline.events.Event;
+import org.json.JSONObject;
+
+/**
+ * Created: 08/02/2023 13:46
+ * Author: Twitter @hawolt
+ **/
+
+public class WardPlacedEvent extends Event {
+    private final String type, wardType;
+    private final int creatorId, timestamp;
+
+    public WardPlacedEvent(JSONObject event) {
+        super(event);
+        this.type = event.getString("type");
+        this.wardType = event.getString("wardType");
+        this.creatorId = event.getInt("creatorId");
+        this.timestamp = event.getInt("timestamp");
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getWardType() {
+        return wardType;
+    }
+
+    public int getCreatorId() {
+        return creatorId;
+    }
+
+    public int getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "WardPlacedEvent{" +
+                "type='" + type + '\'' +
+                ", wardType='" + wardType + '\'' +
+                ", creatorId=" + creatorId +
+                ", timestamp=" + timestamp +
+                ", rawEvent=" + rawEvent +
+                ", type=" + type +
+                '}';
+    }
+}

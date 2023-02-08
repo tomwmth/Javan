@@ -3,3 +3,5 @@ src/test/java/local/*
 # intellij files
 *.iml
 .idea/*
+# build files
+target/*

@@ -1,0 +1,64 @@
+package com.hawolt.dto.match.v5.timeline;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Created: 08/02/2023 13:13
+ * Author: Twitter @hawolt
+ **/
+
+public class TimelineInfo {
+    private final long gameId;
+    private final List<TimelineParticipant> participants;
+    private final List<FramesDto> frames;
+    private final int frameInterval;
+
+    public TimelineInfo(JSONObject info) {
+        this.gameId = info.getLong("gameId");
+        this.frameInterval = info.getInt("frameInterval");
+        this.participants = info.getJSONArray("participants")
+                .toList()
+                .stream()
+                .map(o -> (HashMap<?, ?>) o)
+                .map(JSONObject::new)
+                .map(TimelineParticipant::new)
+                .collect(Collectors.toList());
+        this.frames = info.getJSONArray("frames")
+                .toList()
+                .stream()
+                .map(o -> (HashMap<?, ?>) o)
+                .map(JSONObject::new)
+                .map(FramesDto::new)
+                .collect(Collectors.toList());
+    }
+
+    public long getGameId() {
+        return gameId;
+    }
+
+    public List<TimelineParticipant> getParticipants() {
+        return participants;
+    }
+
+    public List<FramesDto> getFrames() {
+        return frames;
+    }
+
+    public int getFrameInterval() {
+        return frameInterval;
+    }
+
+    @Override
+    public String toString() {
+        return "TimelineInfo{" +
+                "gameId=" + gameId +
+                ", participants=" + participants +
+                ", frames=" + frames +
+                ", frameInterval=" + frameInterval +
+                '}';
+    }
+}
