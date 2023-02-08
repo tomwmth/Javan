@@ -1,0 +1,5 @@
+# local test files
+src/test/java/local/*
+# intellij files
+*.iml
+.idea/*
