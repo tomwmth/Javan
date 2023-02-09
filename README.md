@@ -9,7 +9,9 @@ Documentation is available [here](https://javan.hawolt.com/docs/1.0)
 
 Your starting point should be the [Javan](https://javan.hawolt.com/docs/1.0/com/hawolt/Javan.html) class
 
-### Rate Limiting
+If you have any questions feel free to join the Javan [Discord Server](https://discord.gg/5Xk4nU7cmp)
+
+## Rate Limiting
 
 Rate Limits are handled by the library itself and will currently force your application into sleep when reached
 
