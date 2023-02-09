@@ -1,6 +1,6 @@
 package com.hawolt.api;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.PlatformRouting;
 import com.hawolt.data.routing.RoutingValue;
@@ -30,7 +30,7 @@ public class SummonerAPI {
 
     private static SummonerDto getSummoner(Platform platform, String... path) throws IOException, DataNotFoundException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest.Builder builder = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest.Builder builder = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path(path);
@@ -59,7 +59,7 @@ public class SummonerAPI {
 
     public static SummonerDto getSummonerByAccessToken(Platform platform, String token) throws IOException, DataNotFoundException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest.Builder builder = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest.Builder builder = new HttpRequest.Builder(Javan.rateLimitManager)
                 .addHeader("Authorization", "Bearer " + token)
                 .protocol("https")
                 .host(route)

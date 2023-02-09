@@ -1,6 +1,6 @@
 package com.hawolt.http;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.routing.RoutingValue;
 import com.hawolt.exceptions.WrappedIOException;
 import com.hawolt.http.ratelimiter.RateLimitManager;
@@ -58,7 +58,7 @@ public class HttpRequest {
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
             connection.setRequestMethod(method);
-            connection.addRequestProperty("X-Riot-Token", Kassadin.getRiotAPIKey());
+            connection.addRequestProperty("X-Riot-Token", Javan.getRiotAPIKey());
             for (String header : headers.keySet()) {
                 connection.addRequestProperty(header, headers.get(header));
             }

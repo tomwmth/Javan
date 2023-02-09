@@ -1,6 +1,6 @@
 package com.hawolt.api;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.RegionRouting;
 import com.hawolt.data.routing.RoutingValue;
@@ -25,7 +25,7 @@ public class MatchAPI {
 
     public static List<String> getMatchListByPUUID(Platform platform, String puuid) throws DataNotFoundException, IOException {
         RoutingValue route = RegionRouting.from(platform.getRegion());
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "match", "v5", "matches", "by-puuid", puuid, "ids")
@@ -42,7 +42,7 @@ public class MatchAPI {
 
     public static MatchDto getMatch(Platform platform, long matchId) throws DataNotFoundException, IOException {
         RoutingValue route = RegionRouting.from(platform.getRegion());
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "match", "v5", "matches", String.format("%s_%s", platform.name(), matchId))
@@ -62,7 +62,7 @@ public class MatchAPI {
 
     public static MatchTimelineDto getMatchTimeline(Platform platform, long matchId) throws DataNotFoundException, IOException {
         RoutingValue route = RegionRouting.from(platform.getRegion());
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "match", "v5", "matches", String.format("%s_%s", platform.name(), matchId), "timeline")

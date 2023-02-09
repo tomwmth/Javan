@@ -1,6 +1,6 @@
 package com.hawolt.api;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.PlatformRouting;
 import com.hawolt.data.routing.RoutingValue;
@@ -26,7 +26,7 @@ import java.util.stream.Collectors;
 public class ClashAPI {
     public static List<PlayerDto> getActiveClashPlayers(Platform platform, String summonerId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "clash", "v1", "players", "by-summoner", summonerId)
@@ -45,7 +45,7 @@ public class ClashAPI {
 
     public static TeamDto getTeamById(Platform platform, String teamId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "clash", "v1", "teams", teamId)
@@ -58,7 +58,7 @@ public class ClashAPI {
 
     public static List<TournamentDto> getTournaments(Platform platform) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "clash", "v1", "tournaments")
@@ -77,7 +77,7 @@ public class ClashAPI {
 
     public static TournamentDto getTournamentByTeamId(Platform platform, String teamId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "clash", "v1", "tournaments", "by-team", teamId)
@@ -90,7 +90,7 @@ public class ClashAPI {
 
     public static TournamentDto getTournamentByTournamentId(Platform platform, String tournamentId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "clash", "v1", "tournaments", tournamentId)

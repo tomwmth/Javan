@@ -11,15 +11,9 @@ import com.hawolt.exceptions.DataNotFoundException;
 
 import java.io.IOException;
 import java.util.List;
-
-/**
- * Created: 08/02/2023 18:03
- * Author: Twitter @hawolt
- **/
-
 public class Examples {
     public static void main(String[] args) throws DataNotFoundException, IOException {
-        Kassadin.setRiotAPIKey(args[0]);
+        Javan.setRiotAPIKey(args[0]);
         SummonerDto summoner = SummonerAPI.getSummonerByName(Platform.EUW1, "Agurin");
         System.out.println(summoner);
         List<String> list = MatchAPI.getMatchListByPUUID(Platform.EUW1, summoner.getPUUID());

@@ -1,6 +1,6 @@
 package com.hawolt.api;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.api.Division;
 import com.hawolt.data.api.QueueType;
 import com.hawolt.data.api.Tier;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class LeagueAPI {
     private static LeagueListDTO getLeague(Platform platform, String... path) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path(path)
@@ -53,7 +53,7 @@ public class LeagueAPI {
 
     public static LeagueListDTO getLeagueListByLeagueId(Platform platform, String leagueUUID) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "league", "v4", "leagues", leagueUUID)
@@ -66,7 +66,7 @@ public class LeagueAPI {
 
     public static List<LeagueEntryDTO> getLeagueEntriesForSummoner(Platform platform, String summonerId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "league", "v4", "entries", "by-summoner", summonerId)
@@ -89,7 +89,7 @@ public class LeagueAPI {
 
     public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, Division division, Tier tier, QueueType queueType, Object page) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "league", "v4", "entries", queueType, tier, division)

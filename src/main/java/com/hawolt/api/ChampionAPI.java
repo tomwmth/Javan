@@ -1,6 +1,6 @@
 package com.hawolt.api;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.PlatformRouting;
 import com.hawolt.data.routing.RoutingValue;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class ChampionAPI {
     public static ChampionInfo getChampionRotations(Platform platform) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "platform", "v3", "champion-rotations")

@@ -1,6 +1,6 @@
 package com.hawolt.api;
 
-import com.hawolt.Kassadin;
+import com.hawolt.Javan;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.PlatformRouting;
 import com.hawolt.data.routing.RoutingValue;
@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class MasteryAPI {
     public static int getPlayerTotalMasteryScore(Platform platform, String summonerId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "champion-mastery", "v4", "scores", "by-summoner", summonerId)
@@ -37,7 +37,7 @@ public class MasteryAPI {
 
     public static ChampionMasteryDto getPlayerMasteryScoreForChampion(Platform platform, String summonerId, Object championId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner", summonerId, "by-champion", championId)
@@ -54,7 +54,7 @@ public class MasteryAPI {
 
     public static List<ChampionMasteryDto> getPlayerTopMasteryScores(Platform platform, String summonerId, Object count) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner", summonerId, "top")
@@ -74,7 +74,7 @@ public class MasteryAPI {
 
     public static List<ChampionMasteryDto> getPlayerMasteryScores(Platform platform, String summonerId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
-        HttpRequest request = new HttpRequest.Builder(Kassadin.rateLimitManager)
+        HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
                 .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner", summonerId)
