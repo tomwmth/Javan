@@ -1,6 +1,6 @@
-# Kassadin
+# Javan
 
-Kassadin is a very lightweight adaptation of the Riot Games League of Legends API with the using only dependency being `org.json`
+Javan is a very lightweight adaptation of the Riot Games League of Legends API with the using only dependency being `org.json`
 
 ## Examples
 
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Examples {
     public static void main(String[] args) throws DataNotFoundException, IOException {
-        Kassadin.setRiotAPIKey(args[0]);
+        Javan.setRiotAPIKey(args[0]);
         SummonerDto summoner = SummonerAPI.getSummonerByName(Platform.EUW1, "Agurin");
         System.out.println(summoner);
         List<String> list = MatchAPI.getMatchListByPUUID(Platform.EUW1, summoner.getPUUID());
@@ -56,8 +56,8 @@ and then add the dependency
 ```
 <dependency>
     <groupId>com.github.hawolt</groupId>
-    <artifactId>Kassadin</artifactId>
-    <version>8ceb7d9d19</version>
+    <artifactId>Javan</artifactId>
+    <version>ea1e20b58b</version>
 </dependency>
 ```
 
