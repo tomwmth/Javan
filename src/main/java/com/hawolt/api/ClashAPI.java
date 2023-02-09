@@ -5,8 +5,8 @@ import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.PlatformRouting;
 import com.hawolt.data.routing.RoutingValue;
 import com.hawolt.dto.clash.v1.PlayerDto;
-import com.hawolt.dto.clash.v1.TeamDto;
 import com.hawolt.dto.clash.v1.TournamentDto;
+import com.hawolt.dto.clash.v1.TournamentTeamDto;
 import com.hawolt.exceptions.DataNotFoundException;
 import com.hawolt.http.HttpRequest;
 import com.hawolt.http.HttpResponse;
@@ -19,8 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created: 07/02/2023 12:40
- * Author: Twitter @hawolt
+ * Wrapper for /lol/clash/v1
  **/
 
 public class ClashAPI {
@@ -43,7 +42,7 @@ public class ClashAPI {
         }
     }
 
-    public static TeamDto getTeamById(Platform platform, String teamId) throws DataNotFoundException, IOException {
+    public static TournamentTeamDto getTeamById(Platform platform, String teamId) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
@@ -52,7 +51,7 @@ public class ClashAPI {
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
-            return new TeamDto(response.body());
+            return new TournamentTeamDto(response.body());
         }
     }
 

@@ -3,8 +3,7 @@ package com.hawolt.dto.match.v5.timeline;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 13:24
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class ChampionStats {

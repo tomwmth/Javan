@@ -1,8 +1,7 @@
 package com.hawolt.dto.match.v5.timeline.events;
 
 /**
- * Created: 08/02/2023 13:34
- * Author: Twitter @hawolt
+ * Handles events of the timeline
  **/
 
 public enum EventType {

@@ -3,8 +3,7 @@ package com.hawolt.dto.summoner.v4;
 import org.json.JSONObject;
 
 /**
- * Created: 07/02/2023 22:28
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class SummonerDto {

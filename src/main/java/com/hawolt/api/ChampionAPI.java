@@ -13,8 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
- * Created: 07/02/2023 12:40
- * Author: Twitter @hawolt
+ * Wrapper for /lol/platform/v3
  **/
 
 public class ChampionAPI {

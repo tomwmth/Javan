@@ -3,8 +3,7 @@ package com.hawolt.dto.spectator.v4;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 11:26
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class GameCustomizationObject {

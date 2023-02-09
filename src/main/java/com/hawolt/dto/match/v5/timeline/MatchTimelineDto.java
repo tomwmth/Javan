@@ -4,8 +4,7 @@ import com.hawolt.dto.match.v5.match.MetadataDto;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 13:09
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class MatchTimelineDto {

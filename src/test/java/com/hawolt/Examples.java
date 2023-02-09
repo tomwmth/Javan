@@ -11,7 +11,9 @@ import com.hawolt.exceptions.DataNotFoundException;
 
 import java.io.IOException;
 import java.util.List;
+
 public class Examples {
+
     public static void main(String[] args) throws DataNotFoundException, IOException {
         Javan.setRiotAPIKey(args[0]);
         SummonerDto summoner = SummonerAPI.getSummonerByName(Platform.EUW1, "Agurin");

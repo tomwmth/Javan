@@ -17,8 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created: 07/02/2023 12:36
- * Author: Twitter @hawolt
+ * Wrapper for /lol/match/v5
  **/
 
 public class MatchAPI {

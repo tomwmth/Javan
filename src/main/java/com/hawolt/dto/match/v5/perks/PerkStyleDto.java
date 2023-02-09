@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created: 07/02/2023 14:54
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class PerkStyleDto {

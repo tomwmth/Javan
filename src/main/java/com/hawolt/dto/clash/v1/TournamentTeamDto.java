@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class TeamDto {
+public class TournamentTeamDto {
     private final String id, name, captain, abbreviation;
     private final int tournamentId, iconId, tier;
     private final List<PlayerDto> players;
 
-    public TeamDto(JSONObject team) {
+    public TournamentTeamDto(JSONObject team) {
         this.id = team.getString("id");
         this.tournamentId = team.getInt("tournamentId");
         this.name = team.getString("name");

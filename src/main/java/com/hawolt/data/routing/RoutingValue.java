@@ -1,9 +1,11 @@
 package com.hawolt.data.routing;
 
 /**
- * Created: 07/02/2023 10:58
- * Author: Twitter @hawolt
- **/
+ * Abstraction for Platforms and Regions to access the Riot API
+ *
+ * @see Region
+ * @see Platform
+ */
 
 public interface RoutingValue {
     String getHost();

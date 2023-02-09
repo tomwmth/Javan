@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created: 08/02/2023 13:18
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class TimelineParticipantFrames {

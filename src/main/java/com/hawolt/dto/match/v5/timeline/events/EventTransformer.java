@@ -8,8 +8,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * Created: 08/02/2023 13:38
- * Author: Twitter @hawolt
+ * Handles events of the timeline
  **/
 
 public class EventTransformer {

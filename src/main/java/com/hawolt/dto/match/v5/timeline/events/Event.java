@@ -3,8 +3,7 @@ package com.hawolt.dto.match.v5.timeline.events;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 13:34
- * Author: Twitter @hawolt
+ * Handles events of the timeline
  **/
 
 public class Event {

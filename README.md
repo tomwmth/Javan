@@ -1,6 +1,7 @@
 # Javan
 
-Javan is a very lightweight adaptation of the Riot Games League of Legends API with the using only dependency being `org.json`
+Javan is a very lightweight adaptation of the Riot Games League of Legends API with the using only dependency
+being `org.json`
 
 ## Examples
 
@@ -44,6 +45,7 @@ public class Examples {
 ## Maven
 
 to use this Library within your Maven project you will have to add the following repository
+
 ```
 <repositories>
     <repository>
@@ -52,7 +54,9 @@ to use this Library within your Maven project you will have to add the following
     </repository>
 </repositories>
 ```
+
 and then add the dependency
+
 ```
 <dependency>
     <groupId>com.github.hawolt</groupId>
@@ -60,7 +64,6 @@ and then add the dependency
     <version>ea1e20b58b</version>
 </dependency>
 ```
-
 
 ### Rate Limiting
 

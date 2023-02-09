@@ -1,9 +1,11 @@
 package com.hawolt.data.routing;
 
 /**
- * Created: 07/02/2023 11:04
- * Author: Twitter @hawolt
- **/
+ * Platform types that are used to access the API
+ * associated with a Region which bundles multiple Platforms
+ *
+ * @see Region
+ */
 
 public enum Platform {
     BR1(Region.AMERICAS),
@@ -22,7 +24,7 @@ public enum Platform {
     TH2(Region.SEA),
     TW2(Region.SEA),
     VN2(Region.SEA);
-    Region region;
+    final Region region;
 
     Platform(Region region) {
         this.region = region;

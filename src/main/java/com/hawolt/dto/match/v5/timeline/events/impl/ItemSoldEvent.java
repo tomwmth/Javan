@@ -4,8 +4,7 @@ import com.hawolt.dto.match.v5.timeline.events.Event;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 13:46
- * Author: Twitter @hawolt
+ * Generated structure of given Event
  **/
 
 public class ItemSoldEvent extends Event {

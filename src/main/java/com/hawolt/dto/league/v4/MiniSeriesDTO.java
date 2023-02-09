@@ -3,8 +3,7 @@ package com.hawolt.dto.league.v4;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 12:45
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class MiniSeriesDTO {

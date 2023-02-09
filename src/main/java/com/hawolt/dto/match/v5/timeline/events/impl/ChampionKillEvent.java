@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created: 08/02/2023 13:46
- * Author: Twitter @hawolt
+ * Generated structure of given Event
  **/
 
 public class ChampionKillEvent extends Event {

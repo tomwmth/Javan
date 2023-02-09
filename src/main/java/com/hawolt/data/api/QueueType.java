@@ -1,9 +1,12 @@
 package com.hawolt.data.api;
 
 /**
- * Created: 08/02/2023 12:47
- * Author: Twitter @hawolt
- **/
+ * Type of game mode that has a ranked ladder
+ * associated with Tier and Division
+ *
+ * @see Tier
+ * @see Division
+ */
 
 public enum QueueType {
     RANKED_SOLO_5x5, RANKED_FLEX_SR, RANKED_FLEX_TT

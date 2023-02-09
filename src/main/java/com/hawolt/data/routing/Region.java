@@ -1,9 +1,11 @@
 package com.hawolt.data.routing;
 
 /**
- * Created: 07/02/2023 11:05
- * Author: Twitter @hawolt
- **/
+ * Region types that are used to access the API
+ * a region can bundle multiple Platforms
+ *
+ * @see Platform
+ */
 
 public enum Region {
     AMERICAS, ASIA, EUROPE, SEA

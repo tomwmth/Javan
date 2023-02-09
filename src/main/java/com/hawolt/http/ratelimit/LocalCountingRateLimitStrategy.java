@@ -1,4 +1,4 @@
-package com.hawolt.util.ratelimit;
+package com.hawolt.http.ratelimit;
 
 import com.hawolt.http.ratelimiter.RateLimitInsight;
 
@@ -19,11 +19,11 @@ public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
     private final long TEN_SECONDS_IN_MILLIS = TimeUnit.SECONDS.toMillis(10);
 
     /**
-     * Contains Paths to a resource and the associated Rate Limit that has to be respected
+     * Contains paths to a resource and the associated Rate Limit that has to be respected
      */
     private final Map<String, RateLimitInsight> insights = new HashMap<>();
     /**
-     * Contains Paths of requested resources and the Timestamps of requests that have been made towards it
+     * Contains paths of requested resources and the timestamps of requests that have been made towards it
      */
     private final Map<String, List<Long>> map = new HashMap<>();
 
@@ -79,6 +79,11 @@ public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
         return (int) map.get(destination).stream().filter(o -> timestamp - o <= TEN_MINUTES_IN_MILLIS).count();
     }
 
+    /**
+     * Sleep until Rate Limit for the given path is available
+     *
+     * @param destination Endpoint with Rate Limit
+     */
     @Override
     public void waitForQuota(String destination) {
         while (isQuotaReached(destination)) {

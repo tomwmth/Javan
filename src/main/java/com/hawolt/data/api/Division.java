@@ -1,9 +1,12 @@
 package com.hawolt.data.api;
 
 /**
- * Created: 08/02/2023 13:06
- * Author: Twitter @hawolt
- **/
+ * More specific display of a Summoner on the Ranked Ladder
+ * associated with a Tier and QueueType
+ *
+ * @see Tier
+ * @see QueueType
+ */
 
 public enum Division {
     I, II, III, IV

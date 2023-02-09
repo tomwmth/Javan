@@ -1,4 +1,4 @@
-package com.hawolt.util.ratelimit;
+package com.hawolt.http.ratelimit;
 
 /**
  * Strategy to deal with Rate Limits

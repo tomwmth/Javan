@@ -5,11 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * Created: 07/02/2023 13:05
- * Author: Twitter @hawolt
+ * Utility class to read InputStreams
  **/
 
 public class StreamReader {
+    /**
+     * @param stream An InputStream to read from
+     * @return The byte content of the stream
+     * @throws IOException
+     */
     public static byte[] read(InputStream stream) throws IOException {
         ByteArrayOutputStream result = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];

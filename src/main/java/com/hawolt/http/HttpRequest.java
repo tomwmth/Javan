@@ -16,10 +16,10 @@ import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+
 /**
- * Created: 07/02/2023 12:47
- * Author: Twitter @hawolt
- **/
+ * Used to send http requests
+ */
 
 public class HttpRequest {
     private final RateLimitManager rateLimitManager;
@@ -27,6 +27,9 @@ public class HttpRequest {
     private final RoutingValue routingValue;
     private final String url, method, path;
 
+    /**
+     * @param builder Request builder containing data for the request
+     */
     private HttpRequest(Builder builder) {
         StringBuilder url = new StringBuilder();
         url.append(builder.protocol).append("://").append(builder.routingValue.getHost());
@@ -50,10 +53,17 @@ public class HttpRequest {
         this.rateLimitManager = builder.rateLimitManager;
     }
 
+    /**
+     * @return Destination request path
+     */
     public String getUrl() {
         return url;
     }
 
+    /**
+     * @return Response to our request, may silently throw a WrappedIOException when failing to initialize
+     * @see WrappedIOException
+     */
     private HttpURLConnection connection() {
         try {
             HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
@@ -68,18 +78,37 @@ public class HttpRequest {
         }
     }
 
+    /**
+     * @return Response to our request with a String body
+     * @throws IOException
+     */
     public HttpResponse<String> getAsString() throws IOException {
         return handleResponse(() -> new HttpResponse<>(String::new, connection()));
     }
 
+    /**
+     * @return Response to our request with a JSONObject body
+     * @throws IOException
+     */
     public HttpResponse<JSONObject> getAsJSONObject() throws IOException {
         return handleResponse(() -> new HttpResponse<>(bytes -> new JSONObject(new String(bytes)), connection()));
     }
 
+    /**
+     * @return Response to our request with a JSONArray body
+     * @throws IOException
+     */
     public HttpResponse<JSONArray> getAsJSONArray() throws IOException {
         return handleResponse(() -> new HttpResponse<>(bytes -> new JSONArray(new String(bytes)), connection()));
     }
 
+    /**
+     * @param supplier Supplier is used here to handle any Exceptions that can occur when constructing the response
+     * @param <T>      Desired type of the response body
+     * @return Response to a http request
+     * @throws IOException
+     * @see WrappedIOException
+     */
     private <T> HttpResponse<T> handleResponse(Supplier<HttpResponse<T>> supplier) throws IOException {
         rateLimitManager.waitForQuota(routingValue, path);
         rateLimitManager.hit(routingValue, path);
@@ -92,6 +121,9 @@ public class HttpRequest {
         }
     }
 
+    /**
+     * Builder class for HttpRequest
+     */
     public static class Builder {
         Map<String, String> parameters = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
@@ -100,35 +132,63 @@ public class HttpRequest {
         RoutingValue routingValue;
         String method, protocol;
 
+        /**
+         * @param rateLimitManager Manager to use for Rate Limit
+         */
         public Builder(RateLimitManager rateLimitManager) {
             this.rateLimitManager = rateLimitManager;
         }
 
+        /**
+         * @param routingValue Hostname of the request
+         * @return Our request Builder
+         */
         public Builder host(RoutingValue routingValue) {
             this.routingValue = routingValue;
             return this;
         }
 
+        /**
+         * @param protocol http or https
+         * @return Our request Builder
+         */
         public Builder protocol(String protocol) {
             this.protocol = protocol;
             return this;
         }
 
+        /**
+         * @param segments Path segments of the request
+         * @return Our request Builder
+         */
         public Builder path(Object... segments) {
             this.path.addAll(Arrays.stream(segments).map(Object::toString).collect(Collectors.toList()));
             return this;
         }
 
+        /**
+         * @param k Header key
+         * @param v Header value
+         * @return Our request Builder
+         */
         public Builder addHeader(String k, String v) {
             headers.put(k, v);
             return this;
         }
 
+        /**
+         * @param k Query key
+         * @param v Query value
+         * @return Our request Builder
+         */
         public Builder addQueryParameter(String k, Object v) {
             parameters.put(k, v.toString());
             return this;
         }
 
+        /**
+         * @return GET request based on the configured Builder
+         */
         public HttpRequest get() {
             this.method = "GET";
             return new HttpRequest(this);

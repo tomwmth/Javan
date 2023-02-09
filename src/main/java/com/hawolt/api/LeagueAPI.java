@@ -21,8 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created: 07/02/2023 12:40
- * Author: Twitter @hawolt
+ * Wrapper for /lol/league/v4
  **/
 
 public class LeagueAPI {

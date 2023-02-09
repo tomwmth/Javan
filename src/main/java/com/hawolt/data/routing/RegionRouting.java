@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created: 07/02/2023 10:58
- * Author: Twitter @hawolt
- **/
+ * Mapping of the Region types to their associated hosts
+ *
+ * @see Region
+ */
+
 
 public class RegionRouting {
     private static final Map<Region, RoutingValue> map = new HashMap<>();
@@ -20,6 +22,11 @@ public class RegionRouting {
         map.put(Region.SEA, () -> "sea.api.riotgames.com");
     }
 
+    /**
+     * @param region Region to fetch a RoutingValue for
+     * @return Hostname for the specified Platform
+     * @throws UnknownRoutingException When an unknown Region is provided
+     */
     public static RoutingValue from(Region region) throws UnknownRoutingException {
         if (region == null) throw new UnknownRoutingException("null");
         RoutingValue route = map.get(region);

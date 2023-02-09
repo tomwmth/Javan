@@ -4,19 +4,19 @@ import com.hawolt.dto.match.v5.timeline.events.Event;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 13:46
- * Author: Twitter @hawolt
+ * Generated structure of given Event
  **/
 
 public class ItemDestroyedEvent extends Event {
     private final String type;
     private final int participantId, itemId, timestamp;
-    public ItemDestroyedEvent(JSONObject event){
+
+    public ItemDestroyedEvent(JSONObject event) {
         super(event);
-        this.type=event.getString("type");
-        this.participantId=event.getInt("participantId");
-        this.itemId=event.getInt("itemId");
-        this.timestamp=event.getInt("timestamp");
+        this.type = event.getString("type");
+        this.participantId = event.getInt("participantId");
+        this.itemId = event.getInt("itemId");
+        this.timestamp = event.getInt("timestamp");
     }
 
     public String getType() {

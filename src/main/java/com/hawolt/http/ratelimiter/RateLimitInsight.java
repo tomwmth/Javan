@@ -1,13 +1,19 @@
 package com.hawolt.http.ratelimiter;
 
+import com.sun.istack.internal.Nullable;
+
 /**
- * Created: 07/02/2023 16:12
- * Author: Twitter @hawolt
- **/
+ * Wrapper for ten-second and ten-minute Rate Limit
+ *
+ * @see RateLimitQuota
+ */
 
 public class RateLimitInsight {
     private RateLimitQuota minor, major;
 
+    /**
+     * @param info The value of the Rate Limit Header
+     */
     public RateLimitInsight(String info) {
         String[] data = info.split(",");
         this.minor = new RateLimitQuota(data[0]);
@@ -15,10 +21,20 @@ public class RateLimitInsight {
         this.major = new RateLimitQuota(data[1]);
     }
 
+    /**
+     * @return Rate Limit Quota available within ten-seconds
+     */
     public RateLimitQuota getMinor() {
         return minor;
     }
 
+    /**
+     * Major Rate Limit will be null when dealing with RateLimitType.METHOD
+     *
+     * @return Rate Limit Quota available within ten-minutes
+     * @see RateLimitType
+     */
+    @Nullable
     public RateLimitQuota getMajor() {
         return major;
     }

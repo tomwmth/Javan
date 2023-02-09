@@ -2,10 +2,10 @@ package com.hawolt.exceptions;
 
 import java.io.IOException;
 
+
 /**
- * Created: 07/02/2023 21:10
- * Author: Twitter @hawolt
- **/
+ * Wraps an IOException as a RuntimeException to allow handling at later stage
+ */
 
 public class WrappedIOException extends RuntimeException {
     private final IOException origin;

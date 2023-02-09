@@ -6,9 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created: 07/02/2023 10:56
- * Author: Twitter @hawolt
- **/
+ * Mapping of the Platform types to their associated hosts
+ *
+ * @see Platform
+ */
 
 public class PlatformRouting {
     private static final Map<Platform, RoutingValue> map = new HashMap<>();
@@ -32,6 +33,11 @@ public class PlatformRouting {
         map.put(Platform.VN2, () -> "vn2.api.riotgames.com");
     }
 
+    /**
+     * @param platform Platform to fetch a RoutingValue for
+     * @return Hostname for the specified Platform
+     * @throws UnknownRoutingException When an unknown Platform is provided
+     */
     public static RoutingValue from(Platform platform) throws UnknownRoutingException {
         if (platform == null) throw new UnknownRoutingException("null");
         RoutingValue route = map.get(platform);

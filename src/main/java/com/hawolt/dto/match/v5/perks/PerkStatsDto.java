@@ -3,8 +3,7 @@ package com.hawolt.dto.match.v5.perks;
 import org.json.JSONObject;
 
 /**
- * Created: 07/02/2023 14:53
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class PerkStatsDto {

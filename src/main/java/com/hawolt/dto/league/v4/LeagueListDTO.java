@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created: 08/02/2023 12:44
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class LeagueListDTO {

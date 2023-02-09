@@ -1,9 +1,8 @@
 package com.hawolt.exceptions;
 
 /**
- * Created: 07/02/2023 11:07
- * Author: Twitter @hawolt
- **/
+ * Indicates that no routing is mapped for the provided Value
+ */
 
 public class UnknownRoutingException extends RuntimeException {
 

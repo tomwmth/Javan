@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 
 /**
- * Created: 07/02/2023 12:39
- * Author: Twitter @hawolt
+ * Wrapper for /lol/summoner/v4
  **/
 
 public class SummonerAPI {

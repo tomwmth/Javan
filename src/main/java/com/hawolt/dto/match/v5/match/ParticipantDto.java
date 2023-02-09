@@ -4,8 +4,7 @@ import com.hawolt.dto.match.v5.perks.PerksDto;
 import org.json.JSONObject;
 
 /**
- * Created: 07/02/2023 12:42
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class ParticipantDto {

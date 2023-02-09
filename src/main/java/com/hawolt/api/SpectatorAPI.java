@@ -15,8 +15,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 /**
- * Created: 07/02/2023 12:39
- * Author: Twitter @hawolt
+ * Wrapper for /lol/spectator/v4
  **/
 
 public class SpectatorAPI {

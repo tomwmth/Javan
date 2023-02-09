@@ -3,8 +3,7 @@ package com.hawolt.dto.clash.v1;
 import org.json.JSONObject;
 
 /**
- * Created: 08/02/2023 12:14
- * Author: Twitter @hawolt
+ * Wrapper for Data transfer Object as described on the API reference
  **/
 
 public class PlayerDto {
