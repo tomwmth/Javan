@@ -5,3 +5,5 @@ src/test/java/local/*
 .idea/*
 # build files
 target/*
+# ignore docs
+docs/*

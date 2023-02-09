@@ -9,16 +9,27 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created: 07/02/2023 15:30
- * Author: Twitter @hawolt
+ * Self-managed Strategy to deal with Rate Limits that initially reads the header
+ * to inspect allowed requests and then counts requests itself rather than inspecting
+ * the header for remaining requests
  **/
 
 public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
     private final long TEN_MINUTES_IN_MILLIS = TimeUnit.MINUTES.toMillis(10);
     private final long TEN_SECONDS_IN_MILLIS = TimeUnit.SECONDS.toMillis(10);
 
+    /**
+     * Contains Paths to a resource and the associated Rate Limit that has to be respected
+     */
     private final Map<String, RateLimitInsight> insights = new HashMap<>();
+    /**
+     * Contains Paths of requested resources and the Timestamps of requests that have been made towards it
+     */
     private final Map<String, List<Long>> map = new HashMap<>();
+
+    /**
+     * Used to synchronize the Map holding Rate Limit data
+     */
     private final Object lock = new Object();
 
     @Override
