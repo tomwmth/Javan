@@ -3,6 +3,42 @@
 Javan is a very lightweight adaptation of the Riot Games League of Legends API with the using only dependency
 being `org.json`
 
+## Documentation
+
+Documentation is available [here](https://javan.hawolt.com/docs/1.0)
+
+Your starting point should be the [Javan](https://javan.hawolt.com/docs/1.0/com/hawolt/Javan.html) class
+
+### Rate Limiting
+
+Rate Limits are handled by the library itself and will currently force your application into sleep when reached
+
+You can create a custom Rate Limiting Strategy if needed by implementing the `RateLimitStrategy` interface
+
+
+## Maven
+
+to use this Library within your Maven project you will have to add the following repository
+
+```
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+         <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+and then add the dependency
+
+```
+<dependency>
+    <groupId>com.github.hawolt</groupId>
+    <artifactId>Javan</artifactId>
+    <version>ea1e20b58b</version>
+</dependency>
+```
+
 ## Examples
 
 Here are some example calls to get you started, these can also be found in the `test` directory
@@ -41,33 +77,4 @@ public class Examples {
     }
 }
 ```
-
-## Maven
-
-to use this Library within your Maven project you will have to add the following repository
-
-```
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-         <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-```
-
-and then add the dependency
-
-```
-<dependency>
-    <groupId>com.github.hawolt</groupId>
-    <artifactId>Javan</artifactId>
-    <version>ea1e20b58b</version>
-</dependency>
-```
-
-### Rate Limiting
-
-Rate Limits are handled by the library itself and will currently force your application into sleep when reached
-
-You can create a custom Rate Limiting Strategy if needed by implementing the `RateLimitStrategy` interface
 
