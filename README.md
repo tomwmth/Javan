@@ -37,7 +37,7 @@ and then add the dependency
 <dependency>
     <groupId>com.github.hawolt</groupId>
     <artifactId>Javan</artifactId>
-    <version>f549098b59</version>             
+    <version>494ba47485</version>             
 </dependency>
 ```
 
