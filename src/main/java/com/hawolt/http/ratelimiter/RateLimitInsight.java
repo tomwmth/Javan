@@ -1,7 +1,5 @@
 package com.hawolt.http.ratelimiter;
 
-import com.sun.istack.internal.Nullable;
-
 /**
  * Wrapper for ten-second and ten-minute Rate Limit
  *
@@ -34,7 +32,6 @@ public class RateLimitInsight {
      * @return Rate Limit Quota available within ten-minutes
      * @see RateLimitType
      */
-    @Nullable
     public RateLimitQuota getMajor() {
         return major;
     }
