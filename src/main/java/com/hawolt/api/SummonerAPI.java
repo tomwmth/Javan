@@ -19,11 +19,11 @@ import java.net.URLEncoder;
 
 public class SummonerAPI {
 
-    private static SummonerDto getSummoner(HttpRequest.Builder builder) throws IOException, DataNotFoundException {
+    private static SummonerDto getSummoner(Platform platform, HttpRequest.Builder builder) throws IOException, DataNotFoundException {
         HttpRequest request = builder.get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
-            return new SummonerDto(response.body());
+            return new SummonerDto(platform, response.body());
         }
     }
 
@@ -33,7 +33,7 @@ public class SummonerAPI {
                 .protocol("https")
                 .host(route)
                 .path(path);
-        return getSummoner(builder);
+        return getSummoner(platform, builder);
     }
 
     public static SummonerDto getSummonerByName(Platform platform, String name) throws IOException, DataNotFoundException {
@@ -63,6 +63,6 @@ public class SummonerAPI {
                 .protocol("https")
                 .host(route)
                 .path("lol", "summoner", "v4", "me");
-        return getSummoner(builder);
+        return getSummoner(platform, builder);
     }
 }

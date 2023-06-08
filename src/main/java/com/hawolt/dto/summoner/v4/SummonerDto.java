@@ -1,5 +1,6 @@
 package com.hawolt.dto.summoner.v4;
 
+import com.hawolt.data.routing.Platform;
 import org.json.JSONObject;
 
 /**
@@ -7,11 +8,13 @@ import org.json.JSONObject;
  **/
 
 public class SummonerDto {
+    private final Platform platform;
     private final Long revisionDate;
     private final String accountId, name, puuid, id;
     private final int profileIconId, summonerLevel;
 
-    public SummonerDto(JSONObject summoner) {
+    public SummonerDto(Platform platform, JSONObject summoner) {
+        this.platform = platform;
         this.revisionDate = summoner.getLong("revisionDate");
         this.accountId = summoner.getString("accountId");
         this.name = summoner.getString("name");
@@ -19,6 +22,10 @@ public class SummonerDto {
         this.id = summoner.getString("id");
         this.profileIconId = summoner.getInt("profileIconId");
         this.summonerLevel = summoner.getInt("summonerLevel");
+    }
+
+    public Platform getPlatform() {
+        return platform;
     }
 
     public Long getRevisionDate() {
