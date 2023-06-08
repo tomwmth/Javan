@@ -69,13 +69,13 @@ public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
 
     @Override
     public int getMinorRemaining(String destination) {
-        long timestamp = System.currentTimeMillis();
+        long timestamp = System.currentTimeMillis() + 1;
         return (int) map.get(destination).stream().filter(o -> timestamp - o <= TEN_SECONDS_IN_MILLIS).count();
     }
 
     @Override
     public int getMajorRemaining(String destination) {
-        long timestamp = System.currentTimeMillis();
+        long timestamp = System.currentTimeMillis() + 1;
         return (int) map.get(destination).stream().filter(o -> timestamp - o <= TEN_MINUTES_IN_MILLIS).count();
     }
 
@@ -88,7 +88,7 @@ public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
     public void waitForQuota(String destination) {
         while (isQuotaReached(destination)) {
             try {
-                Thread.sleep(100L);
+                Thread.sleep(1000L);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
