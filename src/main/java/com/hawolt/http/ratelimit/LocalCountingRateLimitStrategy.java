@@ -1,6 +1,7 @@
 package com.hawolt.http.ratelimit;
 
 import com.hawolt.http.ratelimiter.RateLimitInsight;
+import com.hawolt.http.ratelimiter.RateLimitQuota;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,6 @@ import java.util.concurrent.TimeUnit;
 
 public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
     private final long TEN_MINUTES_IN_MILLIS = TimeUnit.MINUTES.toMillis(10);
-    private final long TEN_SECONDS_IN_MILLIS = TimeUnit.SECONDS.toMillis(10);
 
     /**
      * Contains paths to a resource and the associated Rate Limit that has to be respected
@@ -69,14 +69,22 @@ public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
 
     @Override
     public int getMinorRemaining(String destination) {
-        long timestamp = System.currentTimeMillis() + 1;
-        return (int) map.get(destination).stream().filter(o -> timestamp - o <= TEN_SECONDS_IN_MILLIS).count();
+        RateLimitInsight insight = insights.get(destination);
+        RateLimitQuota quota = insight.getMinor();
+        if (quota == null) return 1;
+        long duration = TimeUnit.SECONDS.toMillis(insight.getMinor().getInterval());
+        long timestamp = System.currentTimeMillis();
+        return (int) map.get(destination).stream().filter(o -> 1 + timestamp - o <= duration).count();
     }
 
     @Override
     public int getMajorRemaining(String destination) {
-        long timestamp = System.currentTimeMillis() + 1;
-        return (int) map.get(destination).stream().filter(o -> timestamp - o <= TEN_MINUTES_IN_MILLIS).count();
+        RateLimitInsight insight = insights.get(destination);
+        RateLimitQuota quota = insight.getMajor();
+        if (quota == null) return 1;
+        long duration = TimeUnit.SECONDS.toMillis(insight.getMajor().getInterval());
+        long timestamp = System.currentTimeMillis();
+        return (int) map.get(destination).stream().filter(o -> 1 + timestamp - o <= duration).count();
     }
 
     /**
@@ -88,7 +96,7 @@ public class LocalCountingRateLimitStrategy extends AbstractRateLimitStrategy {
     public void waitForQuota(String destination) {
         while (isQuotaReached(destination)) {
             try {
-                Thread.sleep(1000L);
+                Thread.sleep(500L);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
