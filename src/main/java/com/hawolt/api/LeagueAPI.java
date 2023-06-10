@@ -55,7 +55,8 @@ public class LeagueAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "league", "v4", "leagues", leagueUUID)
+                .path("lol", "league", "v4", "leagues")
+                .path(leagueUUID, false)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -68,7 +69,8 @@ public class LeagueAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "league", "v4", "entries", "by-summoner", summonerId)
+                .path("lol", "league", "v4", "entries", "by-summoner")
+                .path(summonerId, false)
                 .get();
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -91,7 +93,10 @@ public class LeagueAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "league", "v4", "entries", queueType, tier, division)
+                .path("lol", "league", "v4", "entries")
+                .path(queueType, false)
+                .path(tier, false)
+                .path(division, false)
                 .addQueryParameter("page", page)
                 .get();
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {

@@ -28,7 +28,8 @@ public class ClashAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "clash", "v1", "players", "by-summoner", summonerId)
+                .path("lol", "clash", "v1", "players", "by-summoner")
+                .path(summonerId, false)
                 .get();
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -47,7 +48,8 @@ public class ClashAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "clash", "v1", "teams", teamId)
+                .path("lol", "clash", "v1", "teams")
+                .path(teamId, false)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -79,7 +81,8 @@ public class ClashAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "clash", "v1", "tournaments", "by-team", teamId)
+                .path("lol", "clash", "v1", "tournaments", "by-team")
+                .path(teamId, false)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -92,7 +95,8 @@ public class ClashAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "clash", "v1", "tournaments", tournamentId)
+                .path("lol", "clash", "v1", "tournaments")
+                .path(tournamentId)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());

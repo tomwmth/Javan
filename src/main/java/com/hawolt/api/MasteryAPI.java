@@ -26,7 +26,8 @@ public class MasteryAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "champion-mastery", "v4", "scores", "by-summoner", summonerId)
+                .path("lol", "champion-mastery", "v4", "scores", "by-summoner")
+                .path(summonerId, false)
                 .get();
         try (HttpResponse<String> response = request.getAsString()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -39,7 +40,10 @@ public class MasteryAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner", summonerId, "by-champion", championId)
+                .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner")
+                .path(summonerId, false)
+                .path("by-champion")
+                .path(championId, false)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -56,7 +60,9 @@ public class MasteryAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner", summonerId, "top")
+                .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner")
+                .path(summonerId, false)
+                .path("top")
                 .addQueryParameter("count", count)
                 .get();
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {
@@ -76,7 +82,8 @@ public class MasteryAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner", summonerId)
+                .path("lol", "champion-mastery", "v4", "champion-masteries", "by-summoner")
+                .path(summonerId, false)
                 .get();
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());

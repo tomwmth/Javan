@@ -27,33 +27,34 @@ public class SummonerAPI {
         }
     }
 
-    private static SummonerDto getSummoner(Platform platform, String... path) throws IOException, DataNotFoundException {
+    private static SummonerDto getSummoner(Platform platform, String value, String... path) throws IOException, DataNotFoundException {
         RoutingValue route = PlatformRouting.from(platform);
         HttpRequest.Builder builder = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path(path);
+                .path(path)
+                .path(value, false);
         return getSummoner(platform, builder);
     }
 
     public static SummonerDto getSummonerByName(Platform platform, String name) throws IOException, DataNotFoundException {
-        return getSummoner(platform, "lol", "summoner", "v4", "summoners", "by-name", URLEncoder.encode(name, "UTF-8"));
+        return getSummoner(platform, URLEncoder.encode(name, "UTF-8"), "lol", "summoner", "v4", "summoners", "by-name");
     }
 
     public static SummonerDto getSummonerByPUUID(Platform platform, String puuid) throws IOException, DataNotFoundException {
-        return getSummoner(platform, "lol", "summoner", "v4", "summoners", "by-puuid", puuid);
+        return getSummoner(platform, puuid, "lol", "summoner", "v4", "summoners", "by-puuid");
     }
 
     public static SummonerDto getSummonerByAccountId(Platform platform, String accountId) throws IOException, DataNotFoundException {
-        return getSummoner(platform, "lol", "summoner", "v4", "summoners", "by-account", accountId);
+        return getSummoner(platform, accountId, "lol", "summoner", "v4", "summoners", "by-account");
     }
 
     public static SummonerDto getSummonerBySummonerId(Platform platform, String summonerId) throws IOException, DataNotFoundException {
-        return getSummoner(platform, "lol", "summoner", "v4", "summoners", summonerId);
+        return getSummoner(platform, summonerId, "lol", "summoner", "v4", "summoners");
     }
 
     public static SummonerDto getSummonerByRSOPUUID(Platform platform, String rsoPUUID) throws IOException, DataNotFoundException {
-        return getSummoner(platform, "fulfillment", "v1", "summoners", "by-puuid", rsoPUUID);
+        return getSummoner(platform, rsoPUUID, "fulfillment", "v1", "summoners", "by-puuid");
     }
 
     public static SummonerDto getSummonerByAccessToken(Platform platform, String token) throws IOException, DataNotFoundException {

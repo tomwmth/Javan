@@ -28,7 +28,8 @@ public class SpectatorAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "spectator", "v4", "active-games", "by-summoner", summonerId)
+                .path("lol", "spectator", "v4", "active-games", "by-summoner")
+                .path(summonerId, false)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());

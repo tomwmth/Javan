@@ -33,7 +33,10 @@ public class HttpRequest {
     private HttpRequest(Builder builder) {
         StringBuilder url = new StringBuilder();
         url.append(builder.protocol).append("://").append(builder.routingValue.getHost());
-        String path = String.join("/", builder.path);
+        String path = builder.path.stream()
+                .map(PathSegment::getObject)
+                .map(Object::toString)
+                .collect(Collectors.joining("/"));
         if (!path.isEmpty()) url.append("/").append(path);
         for (Map.Entry<String, String> entry : builder.parameters.entrySet()) {
             char separator = url.charAt(url.length() - 1) == '?' ? '&' : '?';
@@ -45,7 +48,11 @@ public class HttpRequest {
                 throw new RuntimeException(e);
             }
         }
-        this.path = path;
+        this.path = builder.path.stream()
+                .filter(PathSegment::isPredefined)
+                .map(PathSegment::getObject)
+                .map(Object::toString)
+                .collect(Collectors.joining("/"));
         this.url = url.toString();
         this.method = builder.method;
         this.headers = builder.headers;
@@ -127,7 +134,7 @@ public class HttpRequest {
     public static class Builder {
         Map<String, String> parameters = new HashMap<>();
         Map<String, String> headers = new HashMap<>();
-        List<String> path = new LinkedList<>();
+        List<PathSegment> path = new LinkedList<>();
         RateLimitManager rateLimitManager;
         RoutingValue routingValue;
         String method, protocol;
@@ -161,8 +168,27 @@ public class HttpRequest {
          * @param segments Path segments of the request
          * @return Our request Builder
          */
-        public Builder path(Object... segments) {
-            this.path.addAll(Arrays.stream(segments).map(Object::toString).collect(Collectors.toList()));
+        public Builder path(PathSegment... segments) {
+            this.path.addAll(Arrays.stream(segments).collect(Collectors.toList()));
+            return this;
+        }
+
+        /**
+         * @param segments Path segments of the request
+         * @return Our request Builder
+         */
+        public Builder path(Object path, boolean predefined) {
+            PathSegment segment = PathSegment.build(path, predefined);
+            this.path.add(segment);
+            return this;
+        }
+
+        /**
+         * @param segments Path segments of the request
+         * @return Our request Builder
+         */
+        public Builder path(String... path) {
+            this.path.addAll(Arrays.stream(path).map(o -> new PathSegment(o, true)).collect(Collectors.toList()));
             return this;
         }
 

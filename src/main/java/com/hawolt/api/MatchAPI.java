@@ -27,7 +27,9 @@ public class MatchAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "match", "v5", "matches", "by-puuid", puuid, "ids")
+                .path("lol", "match", "v5", "matches", "by-puuid")
+                .path(puuid, false)
+                .path("ids")
                 .get();
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -44,7 +46,8 @@ public class MatchAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "match", "v5", "matches", String.format("%s_%s", platform.name(), matchId))
+                .path("lol", "match", "v5", "matches")
+                .path(String.format("%s_%s", platform.name(), matchId), false)
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -64,7 +67,9 @@ public class MatchAPI {
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
                 .host(route)
-                .path("lol", "match", "v5", "matches", String.format("%s_%s", platform.name(), matchId), "timeline")
+                .path("lol", "match", "v5", "matches")
+                .path(String.format("%s_%s", platform.name(), matchId), false)
+                .path("timeline")
                 .get();
         try (HttpResponse<JSONObject> response = request.getAsJSONObject()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
