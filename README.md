@@ -7,7 +7,7 @@ being `org.json`
 
 Documentation is available [here](https://javan.hawolt.com)
 
-Your starting point should be the [Javan](https://javan.hawolt.com/docs/1.0/com/hawolt/Javan.html) class
+Your starting point should be the [Javan](https://javan.hawolt.com/com/hawolt/Javan.html) class
 
 ## Discord
 
