@@ -5,11 +5,13 @@ being `org.json`
 
 ## Documentation
 
-Documentation is available [here](https://javan.hawolt.com/docs/1.0)
+Documentation is available [here](https://javan.hawolt.com)
 
 Your starting point should be the [Javan](https://javan.hawolt.com/docs/1.0/com/hawolt/Javan.html) class
 
-If you have any questions feel free to join the Javan [Discord Server](https://discord.gg/5Xk4nU7cmp)
+## Discord
+
+since this code lacks documentation the best help you can get is my knowledge, proper questions can be asked in this [discord](https://discord.gg/3wknX5gxaW) server, please note that I will not guide you to achieve something or answer beginner level questions
 
 ## Rate Limiting
 
