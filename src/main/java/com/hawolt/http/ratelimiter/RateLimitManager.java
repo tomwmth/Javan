@@ -71,7 +71,13 @@ public class RateLimitManager {
      * @return Insight on the Rate Limits
      */
     private RateLimitInsight getLimitInsight(RateLimitType type, Map<String, List<String>> headers) {
-        return new RateLimitInsight(headers.get("X-" + type + "-Rate-Limit").get(0));
+        if (headers.containsKey("X-" + type + "-Rate-Limit")) {
+            return new RateLimitInsight(headers.get("X-" + type + "-Rate-Limit").get(0));
+        } else {
+            String quota = Integer.MAX_VALUE + ":" + Integer.MAX_VALUE;
+            String limit = String.join(",", quota, quota);
+            return new RateLimitInsight(limit);
+        }
     }
 
     /**
