@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -26,6 +27,7 @@ public class HttpRequest {
     private final Map<String, String> headers;
     private final RoutingValue routingValue;
     private final String url, method, path;
+    private final byte[] payload;
 
     /**
      * @param builder Request builder containing data for the request
@@ -56,6 +58,7 @@ public class HttpRequest {
         this.url = url.toString();
         this.method = builder.method;
         this.headers = builder.headers;
+        this.payload = builder.payload;
         this.routingValue = builder.routingValue;
         this.rateLimitManager = builder.rateLimitManager;
     }
@@ -78,6 +81,12 @@ public class HttpRequest {
             connection.addRequestProperty("X-Riot-Token", Javan.getRiotAPIKey());
             for (String header : headers.keySet()) {
                 connection.addRequestProperty(header, headers.get(header));
+            }
+            if (payload != null) {
+                connection.setDoOutput(true);
+                try (OutputStream stream = connection.getOutputStream()) {
+                    stream.write(payload);
+                }
             }
             return connection;
         } catch (IOException e) {
@@ -119,13 +128,13 @@ public class HttpRequest {
     private <T> HttpResponse<T> handleResponse(Supplier<HttpResponse<T>> supplier) throws IOException {
         rateLimitManager.waitForQuota(routingValue, path);
         rateLimitManager.hit(routingValue, path);
+        HttpResponse<T> response = supplier.get();
         try {
-            HttpResponse<T> response = supplier.get();
             rateLimitManager.report(routingValue, path, response);
-            return response;
         } catch (WrappedIOException wrappedRuntimeException) {
             throw wrappedRuntimeException.unwrap();
         }
+        return response;
     }
 
     /**
@@ -138,6 +147,7 @@ public class HttpRequest {
         RateLimitManager rateLimitManager;
         RoutingValue routingValue;
         String method, protocol;
+        byte[] payload;
 
         /**
          * @param rateLimitManager Manager to use for Rate Limit
@@ -217,6 +227,15 @@ public class HttpRequest {
          */
         public HttpRequest get() {
             this.method = "GET";
+            return new HttpRequest(this);
+        }
+
+        /**
+         * @return POST request based on the configured Builder
+         */
+        public HttpRequest post(byte[] payload) {
+            this.method = "POST";
+            this.payload = payload;
             return new HttpRequest(this);
         }
     }
