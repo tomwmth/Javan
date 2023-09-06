@@ -10,5 +10,5 @@ package com.hawolt.data.api;
  */
 
 public enum Tier {
-    IRON, BRONZE, SILVER, GOLD, PLATINUM, DIAMOND
+    IRON, BRONZE, SILVER, GOLD, PLATINUM, EMERALD, DIAMOND
 }
