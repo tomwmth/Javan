@@ -21,7 +21,7 @@ public class TimelineParticipant extends DataTransferObject {
         return participantId;
     }
 
-    public String getPuuid() {
+    public String getPUUID() {
         return puuid;
     }
 }

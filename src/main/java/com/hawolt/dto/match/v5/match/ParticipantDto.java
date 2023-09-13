@@ -594,7 +594,7 @@ public class ParticipantDto extends DataTransferObject {
         return summonerName;
     }
 
-    public String getPuuid() {
+    public String getPUUID() {
         return puuid;
     }
 
