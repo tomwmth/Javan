@@ -30,15 +30,4 @@ public class PauseEndEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "PauseEndEvent{" +
-                "type='" + type + '\'' +
-                ", realTimestamp=" + realTimestamp +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

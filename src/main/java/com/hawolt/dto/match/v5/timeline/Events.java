@@ -24,11 +24,4 @@ public class Events {
     public List<Event> getList() {
         return list;
     }
-
-    @Override
-    public String toString() {
-        return "Events{" +
-                "list=" + list +
-                '}';
-    }
 }

@@ -44,18 +44,4 @@ public class ItemUndoEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "ItemUndoEvent{" +
-                "type='" + type + '\'' +
-                ", participantId=" + participantId +
-                ", beforeId=" + beforeId +
-                ", goldGain=" + goldGain +
-                ", afterId=" + afterId +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

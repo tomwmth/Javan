@@ -1,15 +1,17 @@
 package com.hawolt.dto.match.v5.timeline;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class ChampionStats {
+public class ChampionStats extends DataTransferObject {
     private final int lifesteal, magicPenPercent, healthRegen, movementSpeed, armorPenPercent, healthMax, power, attackDamage, physicalVamp, magicResist, abilityPower, abilityHaste, health, bonusMagicPenPercent, ccReduction, spellVamp, bonusArmorPenPercent, cooldownReduction, powerRegen, armor, armorPen, powerMax, attackSpeed, magicPen, omnivamp;
 
     public ChampionStats(JSONObject stats) {
+        super(stats);
         this.lifesteal = stats.getInt("lifesteal");
         this.magicPenPercent = stats.getInt("magicPenPercent");
         this.healthRegen = stats.getInt("healthRegen");
@@ -135,36 +137,5 @@ public class ChampionStats {
 
     public int getOmnivamp() {
         return omnivamp;
-    }
-
-    @Override
-    public String toString() {
-        return "ChampionStats{" +
-                "lifesteal=" + lifesteal +
-                ", magicPenPercent=" + magicPenPercent +
-                ", healthRegen=" + healthRegen +
-                ", movementSpeed=" + movementSpeed +
-                ", armorPenPercent=" + armorPenPercent +
-                ", healthMax=" + healthMax +
-                ", power=" + power +
-                ", attackDamage=" + attackDamage +
-                ", physicalVamp=" + physicalVamp +
-                ", magicResist=" + magicResist +
-                ", abilityPower=" + abilityPower +
-                ", abilityHaste=" + abilityHaste +
-                ", health=" + health +
-                ", bonusMagicPenPercent=" + bonusMagicPenPercent +
-                ", ccReduction=" + ccReduction +
-                ", spellVamp=" + spellVamp +
-                ", bonusArmorPenPercent=" + bonusArmorPenPercent +
-                ", cooldownReduction=" + cooldownReduction +
-                ", powerRegen=" + powerRegen +
-                ", armor=" + armor +
-                ", armorPen=" + armorPen +
-                ", powerMax=" + powerMax +
-                ", attackSpeed=" + attackSpeed +
-                ", magicPen=" + magicPen +
-                ", omnivamp=" + omnivamp +
-                '}';
     }
 }

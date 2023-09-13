@@ -1,5 +1,6 @@
 package com.hawolt.dto.spectator.v4;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class CurrentGameParticipant {
+public class CurrentGameParticipant extends DataTransferObject {
     private final List<GameCustomizationObject> gameCustomizationObjects;
     private final Perks perks;
     private final String summonerName, summonerId;
@@ -18,6 +19,7 @@ public class CurrentGameParticipant {
     private final boolean bot;
 
     public CurrentGameParticipant(JSONObject participant) {
+        super(participant);
         this.perks = new Perks(participant.getJSONObject("perks"));
         this.summonerName = participant.getString("summonerName");
         this.summonerId = participant.getString("summonerId");
@@ -74,21 +76,5 @@ public class CurrentGameParticipant {
 
     public boolean isBot() {
         return bot;
-    }
-
-    @Override
-    public String toString() {
-        return "CurrentGameParticipant{" +
-                "gameCustomizationObjects=" + gameCustomizationObjects +
-                ", perks=" + perks +
-                ", summonerName='" + summonerName + '\'' +
-                ", summonerId='" + summonerId + '\'' +
-                ", championId=" + championId +
-                ", profileIconId=" + profileIconId +
-                ", teamId=" + teamId +
-                ", spell1Id=" + spell1Id +
-                ", spell2Id=" + spell2Id +
-                ", bot=" + bot +
-                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.hawolt.dto.match.v5.perks;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,12 +11,13 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class PerkStyleDto {
+public class PerkStyleDto extends DataTransferObject {
     private final List<PerkStyleSelectionDto> selections;
     private final String description;
     private final int style;
 
     public PerkStyleDto(JSONObject perk) {
+        super(perk);
         this.description = perk.getString("description");
         this.style = perk.getInt("style");
         this.selections = perk.getJSONArray("selections")
@@ -37,14 +39,5 @@ public class PerkStyleDto {
 
     public int getStyle() {
         return style;
-    }
-
-    @Override
-    public String toString() {
-        return "PerkStyleDto{" +
-                "selections=" + selections +
-                ", description='" + description + '\'' +
-                ", style=" + style +
-                '}';
     }
 }

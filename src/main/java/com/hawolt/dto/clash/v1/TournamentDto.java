@@ -1,5 +1,6 @@
 package com.hawolt.dto.clash.v1;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,12 +11,13 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class TournamentDto {
+public class TournamentDto extends DataTransferObject {
     private final int id, themeId;
     private final String nameKey, nameKeySecondary;
     private final List<TournamentPhaseDto> schedule;
 
     public TournamentDto(JSONObject tournament) {
+        super(tournament);
         this.id = tournament.getInt("id");
         this.themeId = tournament.getInt("themeId");
         this.nameKey = tournament.getString("nameKey");
@@ -47,16 +49,5 @@ public class TournamentDto {
 
     public List<TournamentPhaseDto> getSchedule() {
         return schedule;
-    }
-
-    @Override
-    public String toString() {
-        return "TournamentDto{" +
-                "id=" + id +
-                ", themeId=" + themeId +
-                ", nameKey='" + nameKey + '\'' +
-                ", nameKeySecondary='" + nameKeySecondary + '\'' +
-                ", schedule=" + schedule +
-                '}';
     }
 }

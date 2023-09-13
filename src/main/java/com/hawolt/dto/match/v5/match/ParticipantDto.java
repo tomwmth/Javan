@@ -1,5 +1,6 @@
 package com.hawolt.dto.match.v5.match;
 
+import com.hawolt.dto.DataTransferObject;
 import com.hawolt.dto.match.v5.perks.PerksDto;
 import org.json.JSONObject;
 
@@ -7,13 +8,14 @@ import org.json.JSONObject;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class ParticipantDto {
+public class ParticipantDto extends DataTransferObject {
     private final int bountyLevel, totalUnitsHealed, largestMultiKill, spell2Casts, champExperience, onMyWayPings, summonerLevel, holdPings, damageDealtToObjectives, pushPings, turretTakedowns, magicDamageTaken, deaths, objectivesStolen, detectorWardsPlaced, enemyMissingPings, magicDamageDealtToChampions, wardsKilled, pentaKills, spell3Casts, wardsPlaced, totalDamageDealt, largestKillingSpree, totalDamageDealtToChampions, summoner2Id, totalTimeSpentDead, inhibitorKills, totalTimeCCDealt, participantId, profileIcon, goldSpent, unrealKills, consumablesPurchased, visionScore, longestTimeSpentLiving, killingSprees, sightWardsBoughtInGame, turretsLost, commandPings, quadraKills, item4, nexusTakedowns, item3, item6, item5, item0, item2, summoner1Id, item1, totalDamageShieldedOnTeammates, summoner2Casts, goldEarned, nexusLost, physicalDamageTaken, champLevel, totalDamageTaken, neutralMinionsKilled, basicPings, allInPings, championTransform, tripleKills, damageSelfMitigated, inhibitorsLost, inhibitorTakedowns, largestCriticalStrike, assistMePings, totalHealsOnTeammates, summoner1Casts, damageDealtToBuildings, magicDamageDealt, timePlayed, timeCCingOthers, physicalDamageDealtToChampions, totalMinionsKilled, visionWardsBoughtInGame, kills, championId, baitPings, getBackPings, needVisionPings, turretKills, enemyVisionPings, trueDamageTaken, assists, itemsPurchased, objectivesStolenAssists, damageDealtToTurrets, totalHeal, visionClearedPings, physicalDamageDealt, trueDamageDealtToChampions, dragonKills, baronKills, doubleKills, nexusKills, trueDamageDealt, spell1Casts, teamId, dangerPings, spell4Casts;
     private final boolean teamEarlySurrendered, eligibleForProgression, firstTowerAssist, firstBloodAssist, gameEndedInEarlySurrender, firstBloodKill, gameEndedInSurrender, firstTowerKill, win;
     private final String riotIdName, role, championName, riotIdTagline, summonerName, puuid, summonerId, teamPosition, individualPosition, lane;
     private final PerksDto perks;
 
     public ParticipantDto(JSONObject participant) {
+        super(participant);
         this.riotIdName = participant.getString("riotIdName");
         this.role = participant.getString("role");
         this.championName = participant.getString("championName");
@@ -614,131 +616,5 @@ public class ParticipantDto {
 
     public PerksDto getPerks() {
         return perks;
-    }
-
-    @Override
-    public String toString() {
-        return "ParticipantDto{" +
-                "bountyLevel=" + bountyLevel +
-                ", totalUnitsHealed=" + totalUnitsHealed +
-                ", largestMultiKill=" + largestMultiKill +
-                ", spell2Casts=" + spell2Casts +
-                ", champExperience=" + champExperience +
-                ", onMyWayPings=" + onMyWayPings +
-                ", summonerLevel=" + summonerLevel +
-                ", holdPings=" + holdPings +
-                ", damageDealtToObjectives=" + damageDealtToObjectives +
-                ", pushPings=" + pushPings +
-                ", turretTakedowns=" + turretTakedowns +
-                ", magicDamageTaken=" + magicDamageTaken +
-                ", deaths=" + deaths +
-                ", objectivesStolen=" + objectivesStolen +
-                ", detectorWardsPlaced=" + detectorWardsPlaced +
-                ", enemyMissingPings=" + enemyMissingPings +
-                ", magicDamageDealtToChampions=" + magicDamageDealtToChampions +
-                ", wardsKilled=" + wardsKilled +
-                ", pentaKills=" + pentaKills +
-                ", spell3Casts=" + spell3Casts +
-                ", wardsPlaced=" + wardsPlaced +
-                ", totalDamageDealt=" + totalDamageDealt +
-                ", largestKillingSpree=" + largestKillingSpree +
-                ", totalDamageDealtToChampions=" + totalDamageDealtToChampions +
-                ", summoner2Id=" + summoner2Id +
-                ", totalTimeSpentDead=" + totalTimeSpentDead +
-                ", inhibitorKills=" + inhibitorKills +
-                ", totalTimeCCDealt=" + totalTimeCCDealt +
-                ", participantId=" + participantId +
-                ", profileIcon=" + profileIcon +
-                ", goldSpent=" + goldSpent +
-                ", unrealKills=" + unrealKills +
-                ", consumablesPurchased=" + consumablesPurchased +
-                ", visionScore=" + visionScore +
-                ", longestTimeSpentLiving=" + longestTimeSpentLiving +
-                ", killingSprees=" + killingSprees +
-                ", sightWardsBoughtInGame=" + sightWardsBoughtInGame +
-                ", turretsLost=" + turretsLost +
-                ", commandPings=" + commandPings +
-                ", quadraKills=" + quadraKills +
-                ", item4=" + item4 +
-                ", nexusTakedowns=" + nexusTakedowns +
-                ", item3=" + item3 +
-                ", item6=" + item6 +
-                ", item5=" + item5 +
-                ", item0=" + item0 +
-                ", item2=" + item2 +
-                ", summoner1Id=" + summoner1Id +
-                ", item1=" + item1 +
-                ", totalDamageShieldedOnTeammates=" + totalDamageShieldedOnTeammates +
-                ", summoner2Casts=" + summoner2Casts +
-                ", goldEarned=" + goldEarned +
-                ", nexusLost=" + nexusLost +
-                ", physicalDamageTaken=" + physicalDamageTaken +
-                ", champLevel=" + champLevel +
-                ", totalDamageTaken=" + totalDamageTaken +
-                ", neutralMinionsKilled=" + neutralMinionsKilled +
-                ", basicPings=" + basicPings +
-                ", allInPings=" + allInPings +
-                ", championTransform=" + championTransform +
-                ", tripleKills=" + tripleKills +
-                ", damageSelfMitigated=" + damageSelfMitigated +
-                ", inhibitorsLost=" + inhibitorsLost +
-                ", inhibitorTakedowns=" + inhibitorTakedowns +
-                ", largestCriticalStrike=" + largestCriticalStrike +
-                ", assistMePings=" + assistMePings +
-                ", totalHealsOnTeammates=" + totalHealsOnTeammates +
-                ", summoner1Casts=" + summoner1Casts +
-                ", damageDealtToBuildings=" + damageDealtToBuildings +
-                ", magicDamageDealt=" + magicDamageDealt +
-                ", timePlayed=" + timePlayed +
-                ", timeCCingOthers=" + timeCCingOthers +
-                ", physicalDamageDealtToChampions=" + physicalDamageDealtToChampions +
-                ", totalMinionsKilled=" + totalMinionsKilled +
-                ", visionWardsBoughtInGame=" + visionWardsBoughtInGame +
-                ", kills=" + kills +
-                ", championId=" + championId +
-                ", baitPings=" + baitPings +
-                ", getBackPings=" + getBackPings +
-                ", needVisionPings=" + needVisionPings +
-                ", turretKills=" + turretKills +
-                ", enemyVisionPings=" + enemyVisionPings +
-                ", trueDamageTaken=" + trueDamageTaken +
-                ", assists=" + assists +
-                ", itemsPurchased=" + itemsPurchased +
-                ", objectivesStolenAssists=" + objectivesStolenAssists +
-                ", damageDealtToTurrets=" + damageDealtToTurrets +
-                ", totalHeal=" + totalHeal +
-                ", visionClearedPings=" + visionClearedPings +
-                ", physicalDamageDealt=" + physicalDamageDealt +
-                ", trueDamageDealtToChampions=" + trueDamageDealtToChampions +
-                ", dragonKills=" + dragonKills +
-                ", baronKills=" + baronKills +
-                ", doubleKills=" + doubleKills +
-                ", nexusKills=" + nexusKills +
-                ", trueDamageDealt=" + trueDamageDealt +
-                ", spell1Casts=" + spell1Casts +
-                ", teamId=" + teamId +
-                ", dangerPings=" + dangerPings +
-                ", spell4Casts=" + spell4Casts +
-                ", teamEarlySurrendered=" + teamEarlySurrendered +
-                ", eligibleForProgression=" + eligibleForProgression +
-                ", firstTowerAssist=" + firstTowerAssist +
-                ", firstBloodAssist=" + firstBloodAssist +
-                ", gameEndedInEarlySurrender=" + gameEndedInEarlySurrender +
-                ", firstBloodKill=" + firstBloodKill +
-                ", gameEndedInSurrender=" + gameEndedInSurrender +
-                ", firstTowerKill=" + firstTowerKill +
-                ", win=" + win +
-                ", riotIdName='" + riotIdName + '\'' +
-                ", role='" + role + '\'' +
-                ", championName='" + championName + '\'' +
-                ", riotIdTagline='" + riotIdTagline + '\'' +
-                ", summonerName='" + summonerName + '\'' +
-                ", puuid='" + puuid + '\'' +
-                ", summonerId='" + summonerId + '\'' +
-                ", teamPosition='" + teamPosition + '\'' +
-                ", individualPosition='" + individualPosition + '\'' +
-                ", lane='" + lane + '\'' +
-                ", perks=" + perks +
-                '}';
     }
 }

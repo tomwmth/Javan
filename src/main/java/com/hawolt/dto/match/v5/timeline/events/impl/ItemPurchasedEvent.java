@@ -34,16 +34,4 @@ public class ItemPurchasedEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "ItemPurchasedEvent{" +
-                "type='" + type + '\'' +
-                ", participantId=" + participantId +
-                ", itemId=" + itemId +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

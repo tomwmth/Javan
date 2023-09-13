@@ -40,17 +40,4 @@ public class ChampionSpecialKillEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "ChampionSpecialKillEvent{" +
-                "killType='" + killType + '\'' +
-                ", type='" + type + '\'' +
-                ", position=" + position +
-                ", killerId=" + killerId +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

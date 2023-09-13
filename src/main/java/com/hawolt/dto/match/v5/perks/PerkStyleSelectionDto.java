@@ -1,15 +1,17 @@
 package com.hawolt.dto.match.v5.perks;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class PerkStyleSelectionDto {
+public class PerkStyleSelectionDto extends DataTransferObject {
     private final int perk, var1, var2, var3;
 
     public PerkStyleSelectionDto(JSONObject perk) {
+        super(perk);
         this.perk = perk.getInt("perk");
         this.var1 = perk.getInt("var1");
         this.var2 = perk.getInt("var2");
@@ -30,15 +32,5 @@ public class PerkStyleSelectionDto {
 
     public int getVar3() {
         return var3;
-    }
-
-    @Override
-    public String toString() {
-        return "PerkStyleSelectionDto{" +
-                "perk=" + perk +
-                ", var1=" + var1 +
-                ", var2=" + var2 +
-                ", var3=" + var3 +
-                '}';
     }
 }

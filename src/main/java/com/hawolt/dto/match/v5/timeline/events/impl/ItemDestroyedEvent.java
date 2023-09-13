@@ -34,16 +34,4 @@ public class ItemDestroyedEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "ItemDestroyedEvent{" +
-                "type='" + type + '\'' +
-                ", participantId=" + participantId +
-                ", itemId=" + itemId +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

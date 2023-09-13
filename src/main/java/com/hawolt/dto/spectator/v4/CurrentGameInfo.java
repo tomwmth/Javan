@@ -1,5 +1,6 @@
 package com.hawolt.dto.spectator.v4;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class CurrentGameInfo {
+public class CurrentGameInfo extends DataTransferObject {
     private final long gameId, gameStartTime;
     private final List<BannedChampion> bannedChampions;
     private final List<CurrentGameParticipant> participants;
@@ -19,6 +20,7 @@ public class CurrentGameInfo {
     private final int mapId, gameLength, gameQueueConfigId;
 
     public CurrentGameInfo(JSONObject game) {
+        super(game);
         this.gameId = game.getLong("gameId");
         this.gameStartTime = game.getLong("gameStartTime");
         this.bannedChampions = game.getJSONArray("bannedChampions")
@@ -86,22 +88,5 @@ public class CurrentGameInfo {
 
     public int getGameQueueConfigId() {
         return gameQueueConfigId;
-    }
-
-    @Override
-    public String toString() {
-        return "CurrentGameInfo{" +
-                "gameId=" + gameId +
-                ", gameStartTime=" + gameStartTime +
-                ", bannedChampions=" + bannedChampions +
-                ", participants=" + participants +
-                ", observers=" + observers +
-                ", gameType='" + gameType + '\'' +
-                ", platformId='" + platformId + '\'' +
-                ", gameMode='" + gameMode + '\'' +
-                ", mapId=" + mapId +
-                ", gameLength=" + gameLength +
-                ", gameQueueConfigId=" + gameQueueConfigId +
-                '}';
     }
 }

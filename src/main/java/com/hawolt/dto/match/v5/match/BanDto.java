@@ -1,15 +1,17 @@
 package com.hawolt.dto.match.v5.match;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class BanDto {
+public class BanDto extends DataTransferObject {
     private final int championId, pickTurn;
 
     public BanDto(JSONObject ban) {
+        super(ban);
         this.championId = ban.getInt("championId");
         this.pickTurn = ban.getInt("pickTurn");
     }
@@ -20,13 +22,5 @@ public class BanDto {
 
     public int getPickTurn() {
         return pickTurn;
-    }
-
-    @Override
-    public String toString() {
-        return "BanDto{" +
-                "championId=" + championId +
-                ", pickTurn=" + pickTurn +
-                '}';
     }
 }

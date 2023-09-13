@@ -1,5 +1,6 @@
 package com.hawolt.dto.match.v5.match;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class InfoDto {
+public class InfoDto extends DataTransferObject {
     private final long gameId, gameEndTimestamp, gameStartTimestamp, gameCreation;
     private final String gameType, platformId, gameName, tournamentCode, gameVersion, gameMode;
     private final int queueId, gameDuration, mapId;
@@ -18,6 +19,7 @@ public class InfoDto {
     private final List<TeamDto> teams;
 
     public InfoDto(JSONObject info) {
+        super(info);
         this.gameId = info.getLong("gameId");
         this.gameType = info.getString("gameType");
         this.queueId = info.getInt("queueId");
@@ -105,26 +107,5 @@ public class InfoDto {
 
     public List<TeamDto> getTeams() {
         return teams;
-    }
-
-    @Override
-    public String toString() {
-        return "InfoDto{" +
-                "gameId=" + gameId +
-                ", gameEndTimestamp=" + gameEndTimestamp +
-                ", gameStartTimestamp=" + gameStartTimestamp +
-                ", gameCreation=" + gameCreation +
-                ", gameType='" + gameType + '\'' +
-                ", platformId='" + platformId + '\'' +
-                ", gameName='" + gameName + '\'' +
-                ", tournamentCode='" + tournamentCode + '\'' +
-                ", gameVersion='" + gameVersion + '\'' +
-                ", gameMode='" + gameMode + '\'' +
-                ", queueId=" + queueId +
-                ", gameDuration=" + gameDuration +
-                ", mapId=" + mapId +
-                ", participants=" + participants +
-                ", teams=" + teams +
-                '}';
     }
 }

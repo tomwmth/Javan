@@ -1,15 +1,17 @@
 package com.hawolt.dto.match.v5.match;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class ObjectivesDto {
+public class ObjectivesDto extends DataTransferObject {
     private final ObjectiveDto baron, champion, dragon, inhibitor, riftHerald, tower;
 
     public ObjectivesDto(JSONObject objectives) {
+        super(objectives);
         this.baron = new ObjectiveDto(objectives.getJSONObject("baron"));
         this.champion = new ObjectiveDto(objectives.getJSONObject("champion"));
         this.dragon = new ObjectiveDto(objectives.getJSONObject("dragon"));
@@ -40,17 +42,5 @@ public class ObjectivesDto {
 
     public ObjectiveDto getTower() {
         return tower;
-    }
-
-    @Override
-    public String toString() {
-        return "ObjectivesDto{" +
-                "baron=" + baron +
-                ", champion=" + champion +
-                ", local.dragon=" + dragon +
-                ", inhibitor=" + inhibitor +
-                ", riftHerald=" + riftHerald +
-                ", tower=" + tower +
-                '}';
     }
 }

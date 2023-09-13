@@ -34,16 +34,4 @@ public class WardPlacedEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "WardPlacedEvent{" +
-                "type='" + type + '\'' +
-                ", wardType='" + wardType + '\'' +
-                ", creatorId=" + creatorId +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

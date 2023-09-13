@@ -1,18 +1,20 @@
 package com.hawolt.dto.mastery.v4;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class ChampionMasteryDto {
+public class ChampionMasteryDto extends DataTransferObject {
     private final String summonerId;
     private final long lastPlayTime;
     private final boolean chestGranted;
     private final int championPointsUntilNextLevel, tokensEarned, championId, championLevel, championPoints, championPointsSinceLastLevel;
 
     public ChampionMasteryDto(JSONObject mastery) {
+        super(mastery);
         this.summonerId = mastery.getString("summonerId");
         this.lastPlayTime = mastery.getLong("lastPlayTime");
         this.chestGranted = mastery.getBoolean("chestGranted");
@@ -58,20 +60,5 @@ public class ChampionMasteryDto {
 
     public int getChampionPointsSinceLastLevel() {
         return championPointsSinceLastLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "ChampionMasteryDto{" +
-                "summonerId='" + summonerId + '\'' +
-                ", lastPlayTime=" + lastPlayTime +
-                ", chestGranted=" + chestGranted +
-                ", championPointsUntilNextLevel=" + championPointsUntilNextLevel +
-                ", tokensEarned=" + tokensEarned +
-                ", championId=" + championId +
-                ", championLevel=" + championLevel +
-                ", championPoints=" + championPoints +
-                ", championPointsSinceLastLevel=" + championPointsSinceLastLevel +
-                '}';
     }
 }

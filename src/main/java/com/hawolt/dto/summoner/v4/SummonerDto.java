@@ -1,19 +1,21 @@
 package com.hawolt.dto.summoner.v4;
 
 import com.hawolt.data.routing.Platform;
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class SummonerDto {
+public class SummonerDto extends DataTransferObject {
     private final Platform platform;
     private final Long revisionDate;
     private final String accountId, name, puuid, id;
     private final int profileIconId, summonerLevel;
 
     public SummonerDto(Platform platform, JSONObject summoner) {
+        super(summoner);
         this.platform = platform;
         this.revisionDate = summoner.getLong("revisionDate");
         this.accountId = summoner.getString("accountId");
@@ -54,18 +56,5 @@ public class SummonerDto {
 
     public int getSummonerLevel() {
         return summonerLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "SummonerDto{" +
-                "revisionDate=" + revisionDate +
-                ", accountId='" + accountId + '\'' +
-                ", name='" + name + '\'' +
-                ", puuid='" + puuid + '\'' +
-                ", id='" + id + '\'' +
-                ", profileIconId=" + profileIconId +
-                ", summonerLevel=" + summonerLevel +
-                '}';
     }
 }

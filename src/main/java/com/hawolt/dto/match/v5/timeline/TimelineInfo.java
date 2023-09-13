@@ -1,5 +1,6 @@
 package com.hawolt.dto.match.v5.timeline;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,13 +11,14 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class TimelineInfo {
+public class TimelineInfo extends DataTransferObject {
     private final long gameId;
     private final List<TimelineParticipant> participants;
     private final List<FramesDto> frames;
     private final int frameInterval;
 
     public TimelineInfo(JSONObject info) {
+        super(info);
         this.gameId = info.getLong("gameId");
         this.frameInterval = info.getInt("frameInterval");
         this.participants = info.getJSONArray("participants")
@@ -49,15 +51,5 @@ public class TimelineInfo {
 
     public int getFrameInterval() {
         return frameInterval;
-    }
-
-    @Override
-    public String toString() {
-        return "TimelineInfo{" +
-                "gameId=" + gameId +
-                ", participants=" + participants +
-                ", frames=" + frames +
-                ", frameInterval=" + frameInterval +
-                '}';
     }
 }

@@ -1,5 +1,6 @@
 package com.hawolt.dto.champion.v3;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.List;
@@ -9,12 +10,13 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class ChampionInfo {
+public class ChampionInfo extends DataTransferObject {
     private final List<Integer> freeChampionIdsForNewPlayers, freeChampionIds;
 
     private final Integer maxNewPlayerLevel;
 
     public ChampionInfo(JSONObject champion) {
+        super(champion);
         this.maxNewPlayerLevel = champion.getInt("maxNewPlayerLevel");
         this.freeChampionIdsForNewPlayers = champion.getJSONArray("freeChampionIdsForNewPlayers")
                 .toList()
@@ -40,14 +42,5 @@ public class ChampionInfo {
 
     public Integer getMaxNewPlayerLevel() {
         return maxNewPlayerLevel;
-    }
-
-    @Override
-    public String toString() {
-        return "ChampionInfo{" +
-                "freeChampionIdsForNewPlayers=" + freeChampionIdsForNewPlayers +
-                ", freeChampionIds=" + freeChampionIds +
-                ", maxNewPlayerLevel=" + maxNewPlayerLevel +
-                '}';
     }
 }

@@ -40,17 +40,4 @@ public class GameEndEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "GameEndEvent{" +
-                "type='" + type + '\'' +
-                ", gameId=" + gameId +
-                ", realTimestamp=" + realTimestamp +
-                ", winningTeam=" + winningTeam +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

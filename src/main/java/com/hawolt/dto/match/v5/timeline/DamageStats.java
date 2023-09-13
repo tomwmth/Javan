@@ -1,15 +1,17 @@
 package com.hawolt.dto.match.v5.timeline;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class DamageStats {
+public class DamageStats extends DataTransferObject {
     private final int trueDamageDoneToChampions, magicDamageDoneToChampions, trueDamageTaken, magicDamageDone, totalDamageDone, magicDamageTaken, totalDamageTaken, physicalDamageDoneToChampions, physicalDamageTaken, trueDamageDone, physicalDamageDone, totalDamageDoneToChampions;
 
     public DamageStats(JSONObject stats) {
+        super(stats);
         this.trueDamageDoneToChampions = stats.getInt("trueDamageDoneToChampions");
         this.magicDamageDoneToChampions = stats.getInt("magicDamageDoneToChampions");
         this.trueDamageTaken = stats.getInt("trueDamageTaken");
@@ -70,23 +72,5 @@ public class DamageStats {
 
     public int getTotalDamageDoneToChampions() {
         return totalDamageDoneToChampions;
-    }
-
-    @Override
-    public String toString() {
-        return "DamageStats{" +
-                "trueDamageDoneToChampions=" + trueDamageDoneToChampions +
-                ", magicDamageDoneToChampions=" + magicDamageDoneToChampions +
-                ", trueDamageTaken=" + trueDamageTaken +
-                ", magicDamageDone=" + magicDamageDone +
-                ", totalDamageDone=" + totalDamageDone +
-                ", magicDamageTaken=" + magicDamageTaken +
-                ", totalDamageTaken=" + totalDamageTaken +
-                ", physicalDamageDoneToChampions=" + physicalDamageDoneToChampions +
-                ", physicalDamageTaken=" + physicalDamageTaken +
-                ", trueDamageDone=" + trueDamageDone +
-                ", physicalDamageDone=" + physicalDamageDone +
-                ", totalDamageDoneToChampions=" + totalDamageDoneToChampions +
-                '}';
     }
 }

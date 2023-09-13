@@ -101,21 +101,4 @@ public class ChampionKillEvent extends Event {
     public int getVictimId() {
         return victimId;
     }
-
-    @Override
-    public String toString() {
-        return "ChampionKillEvent{" +
-                "type='" + type + '\'' +
-                ", position=" + position +
-                ", victimDamageReceived=" + victimDamageReceived +
-                ", victimDamageDealt=" + victimDamageDealt +
-                ", assistingParticipantIds=" + assistingParticipantIds +
-                ", bounty=" + bounty +
-                ", shutdownBounty=" + shutdownBounty +
-                ", killStreakLength=" + killStreakLength +
-                ", killerId=" + killerId +
-                ", timestamp=" + timestamp +
-                ", victimId=" + victimId +
-                '}';
-    }
 }

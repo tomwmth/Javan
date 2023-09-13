@@ -1,18 +1,20 @@
 package com.hawolt.dto.league.v4;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class LeagueItemDTO {
+public class LeagueItemDTO extends DataTransferObject {
     private final String summonerName, rank, summonerId;
     private final boolean freshBlood, inactive, veteran, hotStreak;
     private final int wins, leaguePoints, losses;
     private MiniSeriesDTO miniSeries;
 
     public LeagueItemDTO(JSONObject item) {
+        super(item);
         this.summonerName = item.getString("summonerName");
         this.rank = item.getString("rank");
         this.summonerId = item.getString("summonerId");
@@ -69,22 +71,5 @@ public class LeagueItemDTO {
 
     public MiniSeriesDTO getMiniSeries() {
         return miniSeries;
-    }
-
-    @Override
-    public String toString() {
-        return "LeagueItemDTO{" +
-                "summonerName='" + summonerName + '\'' +
-                ", rank='" + rank + '\'' +
-                ", summonerId='" + summonerId + '\'' +
-                ", freshBlood=" + freshBlood +
-                ", inactive=" + inactive +
-                ", veteran=" + veteran +
-                ", hotStreak=" + hotStreak +
-                ", wins=" + wins +
-                ", leaguePoints=" + leaguePoints +
-                ", losses=" + losses +
-                ", miniSeries=" + miniSeries +
-                '}';
     }
 }

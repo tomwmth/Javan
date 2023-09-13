@@ -60,21 +60,4 @@ public class DamageInfo extends Event {
     public int getTrueDamage() {
         return trueDamage;
     }
-
-    @Override
-    public String toString() {
-        return "DamageInfo{" +
-                "name='" + name + '\'' +
-                ", spellName='" + spellName + '\'' +
-                ", type='" + type + '\'' +
-                ", basic=" + basic +
-                ", participantId=" + participantId +
-                ", physicalDamage=" + physicalDamage +
-                ", magicDamage=" + magicDamage +
-                ", spellSlot=" + spellSlot +
-                ", trueDamage=" + trueDamage +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

@@ -1,17 +1,19 @@
 package com.hawolt.dto.spectator.v4;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class Participant {
+public class Participant extends DataTransferObject {
     private final String summonerName;
     private final boolean bot;
     private final int championId, profileIconId, teamId, spell1Id, spell2Id;
 
     public Participant(JSONObject participant) {
+        super(participant);
         this.summonerName = participant.getString("summonerName");
         this.bot = participant.getBoolean("bot");
         this.championId = participant.getInt("championId");
@@ -47,18 +49,5 @@ public class Participant {
 
     public int getSpell2Id() {
         return spell2Id;
-    }
-
-    @Override
-    public String toString() {
-        return "Participant{" +
-                "summonerName='" + summonerName + '\'' +
-                ", bot=" + bot +
-                ", championId=" + championId +
-                ", profileIconId=" + profileIconId +
-                ", teamId=" + teamId +
-                ", spell1Id=" + spell1Id +
-                ", spell2Id=" + spell2Id +
-                '}';
     }
 }

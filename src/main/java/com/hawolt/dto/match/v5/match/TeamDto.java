@@ -1,5 +1,6 @@
 package com.hawolt.dto.match.v5.match;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -10,13 +11,14 @@ import java.util.stream.Collectors;
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class TeamDto {
+public class TeamDto extends DataTransferObject {
     private final List<BanDto> bans;
     private final ObjectivesDto objectives;
     private final int teamId;
     private final boolean win;
 
     public TeamDto(JSONObject team) {
+        super(team);
         this.win = team.getBoolean("win");
         this.teamId = team.getInt("teamId");
         this.objectives = new ObjectivesDto(team.getJSONObject("objectives"));
@@ -43,15 +45,5 @@ public class TeamDto {
 
     public boolean isWin() {
         return win;
-    }
-
-    @Override
-    public String toString() {
-        return "TeamDto{" +
-                "bans=" + bans +
-                ", objectives=" + objectives +
-                ", teamId=" + teamId +
-                ", win=" + win +
-                '}';
     }
 }

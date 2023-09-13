@@ -79,22 +79,4 @@ public class BuildingKillEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "BuildingKillEvent{" +
-                "laneType='" + laneType + '\'' +
-                ", towerType='" + towerType + '\'' +
-                ", type='" + type + '\'' +
-                ", buildingType='" + buildingType + '\'' +
-                ", position=" + position +
-                ", assistingParticipantIds=" + assistingParticipantIds +
-                ", bounty=" + bounty +
-                ", teamId=" + teamId +
-                ", killerId=" + killerId +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

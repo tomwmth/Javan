@@ -1,18 +1,20 @@
 package com.hawolt.dto.match.v5.timeline;
 
+import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
 /**
  * Wrapper for Data transfer Object as described on the API reference
  **/
 
-public class TimelineParticipantFrame {
+public class TimelineParticipantFrame extends DataTransferObject {
     private final DamageStats damageStats;
     private final ChampionStats championStats;
     private final Position position;
     private final int minionsKilled, participantId, timeEnemySpentControlled, level, totalGold, goldPerSecond, xp, currentGold, jungleMinionsKilled;
 
     public TimelineParticipantFrame(JSONObject participant) {
+        super(participant);
         this.damageStats = new DamageStats(participant.getJSONObject("damageStats"));
         this.championStats = new ChampionStats(participant.getJSONObject("championStats"));
         this.position = new Position(participant.getJSONObject("position"));
@@ -73,23 +75,5 @@ public class TimelineParticipantFrame {
 
     public int getJungleMinionsKilled() {
         return jungleMinionsKilled;
-    }
-
-    @Override
-    public String toString() {
-        return "TimelineParticipantFrame{" +
-                "damageStats=" + damageStats +
-                ", championStats=" + championStats +
-                ", position=" + position +
-                ", minionsKilled=" + minionsKilled +
-                ", participantId=" + participantId +
-                ", timeEnemySpentControlled=" + timeEnemySpentControlled +
-                ", level=" + level +
-                ", totalGold=" + totalGold +
-                ", goldPerSecond=" + goldPerSecond +
-                ", xp=" + xp +
-                ", currentGold=" + currentGold +
-                ", jungleMinionsKilled=" + jungleMinionsKilled +
-                '}';
     }
 }

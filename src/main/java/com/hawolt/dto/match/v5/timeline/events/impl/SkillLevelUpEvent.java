@@ -39,17 +39,4 @@ public class SkillLevelUpEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "SkillLevelUpEvent{" +
-                "type='" + type + '\'' +
-                ", levelUpType='" + levelUpType + '\'' +
-                ", participantId=" + participantId +
-                ", skillSlot=" + skillSlot +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }

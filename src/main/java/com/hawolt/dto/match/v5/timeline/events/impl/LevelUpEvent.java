@@ -34,16 +34,4 @@ public class LevelUpEvent extends Event {
     public int getTimestamp() {
         return timestamp;
     }
-
-    @Override
-    public String toString() {
-        return "LevelUpEvent{" +
-                "type='" + type + '\'' +
-                ", participantId=" + participantId +
-                ", level=" + level +
-                ", timestamp=" + timestamp +
-                ", rawEvent=" + rawEvent +
-                ", type=" + type +
-                '}';
-    }
 }
