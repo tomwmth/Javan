@@ -13,6 +13,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -23,44 +24,56 @@ import java.util.stream.Collectors;
  */
 
 public class HttpRequest {
+    private final Map<String, String> headers, parameters;
     private final RateLimitManager rateLimitManager;
-    private final Map<String, String> headers;
+    private final List<PathSegment> pathSegments;
+    private final String method, path, protocol;
     private final RoutingValue routingValue;
-    private final String url, method, path;
     private final byte[] payload;
+    private String url;
 
     /**
      * @param builder Request builder containing data for the request
      */
     private HttpRequest(Builder builder) {
-        StringBuilder url = new StringBuilder();
-        url.append(builder.protocol).append("://").append(builder.routingValue.getHost());
-        String path = builder.path.stream()
-                .map(PathSegment::getObject)
-                .map(Object::toString)
-                .collect(Collectors.joining("/"));
-        if (!path.isEmpty()) url.append("/").append(path);
-        for (Map.Entry<String, String> entry : builder.parameters.entrySet()) {
-            char separator = url.charAt(url.length() - 1) == '?' ? '&' : '?';
-            try {
-                String key = URLEncoder.encode(entry.getKey(), "UTF-8");
-                String value = URLEncoder.encode(entry.getValue(), "UTF-8");
-                url.append(separator).append(key).append("=").append(value);
-            } catch (UnsupportedEncodingException e) {
-                throw new RuntimeException(e);
-            }
-        }
+        this.rateLimitManager = builder.rateLimitManager;
+        this.routingValue = builder.routingValue;
+        this.parameters = builder.parameters;
+        this.protocol = builder.protocol;
+        this.pathSegments = builder.path;
         this.path = builder.path.stream()
                 .filter(PathSegment::isPredefined)
                 .map(PathSegment::getObject)
                 .map(Object::toString)
                 .collect(Collectors.joining("/"));
-        this.url = url.toString();
-        this.method = builder.method;
         this.headers = builder.headers;
         this.payload = builder.payload;
-        this.routingValue = builder.routingValue;
-        this.rateLimitManager = builder.rateLimitManager;
+        this.method = builder.method;
+        this.url = buildURL();
+    }
+
+    private String buildURL() {
+        StringBuilder url = new StringBuilder();
+        url.append(protocol).append("://").append(routingValue.getHost());
+        String path = pathSegments.stream()
+                .map(PathSegment::getObject)
+                .map(Object::toString)
+                .collect(Collectors.joining("/"));
+        if (!path.isEmpty()) url.append("/").append(path);
+        if (!parameters.entrySet().isEmpty()) url.append("?");
+        for (Map.Entry<String, String> entry : parameters.entrySet()) {
+            char last = url.charAt(url.length() - 1);
+            if (last != '?' && last != '&') url.append('&');
+            try {
+                String key = URLEncoder.encode(entry.getKey(), "UTF-8");
+                String value = URLEncoder.encode(entry.getValue(), "UTF-8");
+                url.append(key).append("=").append(value);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        System.out.println(url.toString());
+        return url.toString();
     }
 
     /**
@@ -68,6 +81,15 @@ public class HttpRequest {
      */
     public String getUrl() {
         return url;
+    }
+
+    public Map<String, String> getQueryParameterMap() {
+        return parameters;
+    }
+
+    public void updateQueryParameter(String name, String value) {
+        this.parameters.put(name, value);
+        this.url = buildURL();
     }
 
     /**
@@ -99,7 +121,7 @@ public class HttpRequest {
      * @throws IOException
      */
     public HttpResponse<String> getAsString() throws IOException {
-        return handleResponse(() -> new HttpResponse<>(String::new, connection()));
+        return handleResponse(() -> new HttpResponse<>(bytes -> new String(bytes, StandardCharsets.UTF_8), connection()));
     }
 
     /**
@@ -107,7 +129,7 @@ public class HttpRequest {
      * @throws IOException
      */
     public HttpResponse<JSONObject> getAsJSONObject() throws IOException {
-        return handleResponse(() -> new HttpResponse<>(bytes -> new JSONObject(new String(bytes)), connection()));
+        return handleResponse(() -> new HttpResponse<>(bytes -> new JSONObject(new String(bytes, StandardCharsets.UTF_8)), connection()));
     }
 
     /**
@@ -115,7 +137,7 @@ public class HttpRequest {
      * @throws IOException
      */
     public HttpResponse<JSONArray> getAsJSONArray() throws IOException {
-        return handleResponse(() -> new HttpResponse<>(bytes -> new JSONArray(new String(bytes)), connection()));
+        return handleResponse(() -> new HttpResponse<>(bytes -> new JSONArray(new String(bytes, StandardCharsets.UTF_8)), connection()));
     }
 
     /**

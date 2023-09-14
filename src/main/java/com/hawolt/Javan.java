@@ -21,6 +21,7 @@ import com.hawolt.dto.summoner.v4.SummonerDto;
 import com.hawolt.exceptions.DataNotFoundException;
 import com.hawolt.exceptions.NoDefaultValueConfigured;
 import com.hawolt.http.ratelimiter.RateLimitManager;
+import com.hawolt.util.Paginator;
 
 import java.io.IOException;
 import java.util.List;
@@ -492,6 +493,37 @@ public class Javan {
      */
     public static List<String> getMatchListByPUUID(Platform platform, String puuid) throws DataNotFoundException, IOException {
         return MatchAPI.getMatchListByPUUID(platform, puuid);
+    }
+
+    /**
+     * @param platform Platform to request data from
+     * @param puuid    PUUID you want to request data for
+     * @param query    MatchAPI.MatchQuery to request only data matching the query
+     * @return Wrapper for the specified Resource as described on the official Riot API documentation
+     * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
+     * @throws IOException
+     */
+    public static List<String> getMatchListByPUUID(Platform platform, String puuid, MatchAPI.MatchQuery query) throws DataNotFoundException, IOException {
+        return MatchAPI.getMatchListByPUUID(platform, puuid, query);
+    }
+
+    /**
+     * @param platform Platform to request data from
+     * @param puuid    PUUID you want to request data for
+     * @return Paginated Wrapper for the specified Resource as described on the official Riot API documentation
+     */
+    public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid) {
+        return MatchAPI.getPaginatedMatchListByPUUID(platform, puuid);
+    }
+
+    /**
+     * @param platform Platform to request data from
+     * @param puuid    PUUID you want to request data for
+     * @param query    MatchAPI.MatchQuery to request only data matching the query
+     * @return Paginated Wrapper for the specified Resource as described on the official Riot API documentation
+     */
+    public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid, MatchAPI.MatchQuery query) {
+        return MatchAPI.getPaginatedMatchListByPUUID(platform, puuid, query);
     }
 
     /**
