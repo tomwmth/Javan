@@ -1,5 +1,8 @@
 package com.hawolt.dto.league.v4;
 
+import com.hawolt.data.api.RankedDivision;
+import com.hawolt.data.api.RankedQueue;
+import com.hawolt.data.api.RankedTier;
 import com.hawolt.dto.DataTransferObject;
 import org.json.JSONObject;
 
@@ -8,18 +11,24 @@ import org.json.JSONObject;
  **/
 
 public class LeagueEntryDTO extends DataTransferObject {
-    private final String tier, leagueId, summonerName, queueType, rank, summonerId;
+    private final RankedTier tier;
+    private final RankedDivision division;
+    private final RankedQueue queue;
+    private final String leagueId, summonerName, summonerId;
     private final boolean freshBlood, inactive, veteran, hotStreak;
     private final int wins, leaguePoints, losses;
     private MiniSeriesDTO miniSeries;
 
     public LeagueEntryDTO(JSONObject entry) {
         super(entry);
-        this.tier = entry.getString("tier");
+        String tier = entry.getString("tier");
+        this.tier = RankedTier.valueOf(tier);
+        String division = entry.getString("rank");
+        this.division = RankedDivision.valueOf(division);
+        String queue = entry.getString("queueType");
+        this.queue = RankedQueue.valueOf(queue);
         this.leagueId = entry.getString("leagueId");
         this.summonerName = entry.getString("summonerName");
-        this.queueType = entry.getString("queueType");
-        this.rank = entry.getString("rank");
         this.summonerId = entry.getString("summonerId");
         this.freshBlood = entry.getBoolean("freshBlood");
         this.inactive = entry.getBoolean("inactive");
@@ -36,7 +45,7 @@ public class LeagueEntryDTO extends DataTransferObject {
         return miniSeries;
     }
 
-    public String getTier() {
+    public RankedTier getTier() {
         return tier;
     }
 
@@ -48,12 +57,12 @@ public class LeagueEntryDTO extends DataTransferObject {
         return summonerName;
     }
 
-    public String getQueueType() {
-        return queueType;
+    public RankedQueue getQueue() {
+        return queue;
     }
 
-    public String getRank() {
-        return rank;
+    public RankedDivision getDivision() {
+        return division;
     }
 
     public String getSummonerId() {

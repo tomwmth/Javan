@@ -47,4 +47,28 @@ public enum Queue {
     public RankedQueue getRankedQueue() {
         return this.rankedQueue;
     }
+
+    public static Queue valueOf(int id) {
+        for (Queue queue : values()) {
+            if (queue.getId() == id) {
+                return queue;
+            }
+        }
+
+        throw new IllegalArgumentException("No enum constant matching " + id);
+    }
+
+    public static Queue valueOf(RankedQueue rankedQueue) {
+        if (rankedQueue == null) {
+            throw new NullPointerException("RankedQueue is null");
+        }
+
+        for (Queue queue : values()) {
+            if (queue.getRankedQueue() == rankedQueue) {
+                return queue;
+            }
+        }
+
+        throw new IllegalArgumentException("No enum constant matching " + rankedQueue.getClass().getName());
+    }
 }
