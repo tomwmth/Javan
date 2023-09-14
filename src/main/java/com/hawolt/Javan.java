@@ -503,7 +503,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static List<String> getMatchListByPUUID(Platform platform, String puuid, MatchAPI.MatchQuery query) throws DataNotFoundException, IOException {
+    public static List<String> getMatchListByPUUID(Platform platform, String puuid, MatchAPI.Query query) throws DataNotFoundException, IOException {
         return MatchAPI.getMatchListByPUUID(platform, puuid, query);
     }
 
@@ -522,7 +522,7 @@ public class Javan {
      * @param query    MatchAPI.MatchQuery to request only data matching the query
      * @return Paginated Wrapper for the specified Resource as described on the official Riot API documentation
      */
-    public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid, MatchAPI.MatchQuery query) {
+    public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid, MatchAPI.Query query) {
         return MatchAPI.getPaginatedMatchListByPUUID(platform, puuid, query);
     }
 

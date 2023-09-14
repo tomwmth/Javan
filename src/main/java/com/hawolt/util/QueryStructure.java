@@ -31,6 +31,10 @@ public class QueryStructure {
         return true;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public static class Builder {
         private final Map<String, Boolean> parameters = new HashMap<>();
 

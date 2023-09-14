@@ -11,7 +11,6 @@ import com.hawolt.exceptions.DataNotFoundException;
 import com.hawolt.http.HttpRequest;
 import com.hawolt.http.HttpResponse;
 import com.hawolt.util.Paginator;
-import com.hawolt.util.Query;
 import com.hawolt.util.QueryStructure;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -28,25 +27,24 @@ import java.util.stream.Collectors;
  **/
 
 public class MatchAPI {
+    public static class Query extends com.hawolt.util.Query {
+        private static final QueryStructure structure = QueryStructure.builder()
+                .addParameter("startTime", false)
+                .addParameter("endTime", false)
+                .addParameter("queue", false)
+                .addParameter("start", false)
+                .addParameter("count", false)
+                .addParameter("type", false)
+                .build();
 
-    public static class MatchQuery extends Query {
-        public static QueryStructure structure;
+        public static Query BLANK = new Query(Collections.emptyMap());
 
-        static {
-            MatchQuery.structure = new QueryStructure.Builder()
-                    .addParameter("startTime", false)
-                    .addParameter("endTime", false)
-                    .addParameter("queue", false)
-                    .addParameter("start", false)
-                    .addParameter("count", false)
-                    .addParameter("type", false)
-                    .build();
+        public Query(Map<String, Object> parameters) {
+            super(parameters);
         }
 
-        public static MatchQuery BLANK = new MatchQuery(Collections.emptyMap());
-
-        public MatchQuery(Map<String, Object> parameters) {
-            super(parameters);
+        public static Builder builder() {
+            return new Builder();
         }
 
         public enum GameType {
@@ -55,6 +53,39 @@ public class MatchAPI {
             @Override
             public String toString() {
                 return name().toLowerCase();
+            }
+        }
+
+        public enum Queue {
+            BB_5x5_NORMAL_ARAM(100),
+            SR_5x5_NORMAL_DRAFT(400),
+            SR_5x5_RANKED_SOLO(420),
+            SR_5x5_NORMAL_BLIND(430),
+            SR_5x5_RANKED_FLEX(440),
+            HA_5x5_NORMAL_ARAM(450),
+            SR_5x5_TOURNEY_CLASH(700),
+            HA_5x5_TOURNEY_CLASH(720),
+            SR_5x5_BOTS_INTRO(830),
+            SR_5x5_BOTS_BEGINNER(840),
+            SR_5x5_BOTS_INTERMEDIATE(850),
+            SR_5x5_RGM_ARURF(900),
+            HA_5x5_RGM_POROKING(920),
+            SR_5x5_RGM_SPELLBOOK(1400),
+            RW_2x2_RGM_ARENA(1700),
+            SR_5x5_RGM_URF(1900),
+            SR_TUTORIAL_ONE(2000),
+            SR_TUTORIAL_TWO(2010),
+            SR_TUTORIAL_THREE(2020);
+
+            private final int id;
+
+            Queue(int id) {
+                this.id = id;
+            }
+
+            @Override
+            public String toString() {
+                return String.valueOf(this.id);
             }
         }
 
@@ -71,7 +102,7 @@ public class MatchAPI {
                 return this;
             }
 
-            public Builder setQueue(int queue) {
+            public Builder setQueue(Queue queue) {
                 this.parameters.put("queue", queue);
                 return this;
             }
@@ -91,13 +122,13 @@ public class MatchAPI {
                 return this;
             }
 
-            public MatchQuery build() {
-                return new MatchQuery(parameters);
+            public Query build() {
+                return new Query(parameters);
             }
         }
     }
 
-    private static HttpRequest getMatchListByPUUIDRequest(Platform platform, String puuid, MatchQuery query) {
+    private static HttpRequest getMatchListByPUUIDRequest(Platform platform, String puuid, Query query) {
         RoutingValue route = RegionRouting.from(platform.getRegion());
         HttpRequest.Builder builder = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")
@@ -110,11 +141,11 @@ public class MatchAPI {
             builder.addQueryParameter(parameter, parameters.get(parameter));
         }
         HttpRequest request = builder.get();
-        if (!MatchQuery.structure.isValid(request)) throw new BadQueryException(request.getQueryParameterMap());
+        if (!Query.structure.isValid(request)) throw new BadQueryException(request.getQueryParameterMap());
         return request;
     }
 
-    public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid, MatchQuery query) {
+    public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid, Query query) {
         return new Paginator<String>(
                 getMatchListByPUUIDRequest(platform, puuid, query),
                 string -> new JSONArray(string).toList()
@@ -135,10 +166,10 @@ public class MatchAPI {
     }
 
     public static Paginator<String> getPaginatedMatchListByPUUID(Platform platform, String puuid) {
-        return getPaginatedMatchListByPUUID(platform, puuid, MatchQuery.BLANK);
+        return getPaginatedMatchListByPUUID(platform, puuid, Query.BLANK);
     }
 
-    public static List<String> getMatchListByPUUID(Platform platform, String puuid, MatchQuery query) throws DataNotFoundException, IOException {
+    public static List<String> getMatchListByPUUID(Platform platform, String puuid, Query query) throws DataNotFoundException, IOException {
         HttpRequest request = getMatchListByPUUIDRequest(platform, puuid, query);
         try (HttpResponse<JSONArray> response = request.getAsJSONArray()) {
             if (response.code() == 404) throw new DataNotFoundException(request.getUrl());
@@ -151,7 +182,7 @@ public class MatchAPI {
     }
 
     public static List<String> getMatchListByPUUID(Platform platform, String puuid) throws DataNotFoundException, IOException {
-        return getMatchListByPUUID(platform, puuid, MatchQuery.BLANK);
+        return getMatchListByPUUID(platform, puuid, Query.BLANK);
     }
 
     public static MatchDto getMatch(Platform platform, long matchId) throws DataNotFoundException, IOException {
