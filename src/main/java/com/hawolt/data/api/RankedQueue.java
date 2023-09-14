@@ -9,5 +9,5 @@ package com.hawolt.data.api;
  */
 
 public enum RankedQueue {
-    RANKED_SOLO_5x5, RANKED_FLEX_SR, RANKED_FLEX_TT
+    RANKED_SOLO_5x5, RANKED_FLEX_SR, @Deprecated RANKED_FLEX_TT
 }
