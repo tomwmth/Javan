@@ -72,7 +72,6 @@ public class HttpRequest {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println(url.toString());
         return url.toString();
     }
 
