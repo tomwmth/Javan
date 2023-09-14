@@ -1,9 +1,9 @@
 package com.hawolt.api;
 
 import com.hawolt.Javan;
-import com.hawolt.data.api.Division;
-import com.hawolt.data.api.QueueType;
-import com.hawolt.data.api.Tier;
+import com.hawolt.data.api.RankedDivision;
+import com.hawolt.data.api.RankedQueue;
+import com.hawolt.data.api.RankedTier;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.PlatformRouting;
 import com.hawolt.data.routing.RoutingValue;
@@ -38,15 +38,15 @@ public class LeagueAPI {
         }
     }
 
-    public static LeagueListDTO getChallengerLeagues(Platform platform, QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getChallengerLeagues(Platform platform, RankedQueue queueType) throws DataNotFoundException, IOException {
         return getLeague(platform, "lol", "league", "v4", "challengerleagues", "by-queue", queueType.name());
     }
 
-    public static LeagueListDTO getGrandmasterLeague(Platform platform, QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getGrandmasterLeague(Platform platform, RankedQueue queueType) throws DataNotFoundException, IOException {
         return getLeague(platform, "lol", "league", "v4", "grandmasterleagues", "by-queue", queueType.name());
     }
 
-    public static LeagueListDTO getMasterLeague(Platform platform, QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getMasterLeague(Platform platform, RankedQueue queueType) throws DataNotFoundException, IOException {
         return getLeague(platform, "lol", "league", "v4", "masterleagues", "by-queue", queueType.name());
     }
 
@@ -84,11 +84,11 @@ public class LeagueAPI {
         }
     }
 
-    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, Division division, Tier tier, QueueType queueType) throws DataNotFoundException, IOException {
+    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, RankedDivision division, RankedTier tier, RankedQueue queueType) throws DataNotFoundException, IOException {
         return getAllLeagueEntries(platform, division, tier, queueType, 1);
     }
 
-    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, Division division, Tier tier, QueueType queueType, Object page) throws DataNotFoundException, IOException {
+    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, RankedDivision division, RankedTier tier, RankedQueue queueType, Object page) throws DataNotFoundException, IOException {
         RoutingValue route = PlatformRouting.from(platform);
         HttpRequest request = new HttpRequest.Builder(Javan.rateLimitManager)
                 .protocol("https")

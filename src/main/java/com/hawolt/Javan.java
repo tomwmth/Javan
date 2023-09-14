@@ -1,9 +1,9 @@
 package com.hawolt;
 
 import com.hawolt.api.*;
-import com.hawolt.data.api.Division;
-import com.hawolt.data.api.QueueType;
-import com.hawolt.data.api.Tier;
+import com.hawolt.data.api.RankedDivision;
+import com.hawolt.data.api.RankedQueue;
+import com.hawolt.data.api.RankedTier;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.data.routing.Region;
 import com.hawolt.dto.champion.v3.ChampionInfo;
@@ -213,7 +213,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static LeagueListDTO getChallengerLeagues(QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getChallengerLeagues(RankedQueue queueType) throws DataNotFoundException, IOException {
         return getChallengerLeagues(defaultPlatform, queueType);
     }
 
@@ -224,7 +224,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static LeagueListDTO getChallengerLeagues(Platform platform, QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getChallengerLeagues(Platform platform, RankedQueue queueType) throws DataNotFoundException, IOException {
         return LeagueAPI.getChallengerLeagues(platform, queueType);
     }
 
@@ -234,7 +234,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static LeagueListDTO getGrandmasterLeague(QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getGrandmasterLeague(RankedQueue queueType) throws DataNotFoundException, IOException {
         return getGrandmasterLeague(defaultPlatform, queueType);
     }
 
@@ -245,7 +245,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static LeagueListDTO getGrandmasterLeague(Platform platform, QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getGrandmasterLeague(Platform platform, RankedQueue queueType) throws DataNotFoundException, IOException {
         return LeagueAPI.getGrandmasterLeague(platform, queueType);
     }
 
@@ -255,7 +255,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static LeagueListDTO getMasterLeague(QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getMasterLeague(RankedQueue queueType) throws DataNotFoundException, IOException {
         return getMasterLeague(defaultPlatform, queueType);
     }
 
@@ -266,7 +266,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static LeagueListDTO getMasterLeague(Platform platform, QueueType queueType) throws DataNotFoundException, IOException {
+    public static LeagueListDTO getMasterLeague(Platform platform, RankedQueue queueType) throws DataNotFoundException, IOException {
         return LeagueAPI.getMasterLeague(platform, queueType);
     }
 
@@ -320,7 +320,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static List<LeagueEntryDTO> getAllLeagueEntries(Division division, Tier tier, QueueType queueType) throws DataNotFoundException, IOException {
+    public static List<LeagueEntryDTO> getAllLeagueEntries(RankedDivision division, RankedTier tier, RankedQueue queueType) throws DataNotFoundException, IOException {
         return getAllLeagueEntries(defaultPlatform, division, tier, queueType);
     }
 
@@ -333,7 +333,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, Division division, Tier tier, QueueType queueType) throws DataNotFoundException, IOException {
+    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, RankedDivision division, RankedTier tier, RankedQueue queueType) throws DataNotFoundException, IOException {
         return LeagueAPI.getAllLeagueEntries(platform, division, tier, queueType);
     }
 
@@ -346,7 +346,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static List<LeagueEntryDTO> getAllLeagueEntries(Division division, Tier tier, QueueType queueType, Object page) throws DataNotFoundException, IOException {
+    public static List<LeagueEntryDTO> getAllLeagueEntries(RankedDivision division, RankedTier tier, RankedQueue queueType, Object page) throws DataNotFoundException, IOException {
         return getAllLeagueEntries(defaultPlatform, division, tier, queueType, page);
     }
 
@@ -360,7 +360,7 @@ public class Javan {
      * @throws DataNotFoundException HTTP 404 causes this Exception to be thrown
      * @throws IOException
      */
-    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, Division division, Tier tier, QueueType queueType, Object page) throws DataNotFoundException, IOException {
+    public static List<LeagueEntryDTO> getAllLeagueEntries(Platform platform, RankedDivision division, RankedTier tier, RankedQueue queueType, Object page) throws DataNotFoundException, IOException {
         return LeagueAPI.getAllLeagueEntries(platform, division, tier, queueType, page);
     }
 

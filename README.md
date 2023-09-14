@@ -49,7 +49,7 @@ Here are some example calls to get you started, these can also be found in the `
 
 ```java
 import com.hawolt.api.*;
-import com.hawolt.data.api.QueueType;
+import com.hawolt.data.api.RankedQueue;
 import com.hawolt.data.routing.Platform;
 import com.hawolt.dto.league.v4.LeagueItemDTO;
 import com.hawolt.dto.league.v4.LeagueListDTO;
@@ -70,7 +70,7 @@ public class Examples {
             MatchDto match = MatchAPI.getMatch(list.get(0));
             System.out.println(match);
         }
-        LeagueListDTO apex = LeagueAPI.getChallengerLeagues(Platform.EUW1, QueueType.RANKED_SOLO_5x5);
+        LeagueListDTO apex = LeagueAPI.getChallengerLeagues(Platform.EUW1, RankedQueue.RANKED_SOLO_5x5);
         List<LeagueItemDTO> challengers = apex.getEntries();
         System.out.println(challengers.get(0));
         LeagueItemDTO alpha = challengers.get(challengers.size() - 1);
